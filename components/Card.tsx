@@ -26,7 +26,7 @@ const Card: FunctionComponent<Props> = ({ image, title, text, hashTags, classNam
     )}
 
     <div className="px-6 py-4">
-      {title && <div className="font-bold text-xl mb-2">{title}</div>}
+      {title && <div className="font-bold text-xl mb-4">{title}</div>}
       {text?.map((line, i) => (
         <p key={i} className="text-gray-700 text-base">
           {line}
