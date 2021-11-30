@@ -12,20 +12,35 @@ const Home: NextPage = () => (
     </Head>
 
     <main className="flex flex-col items-center">
-      <p className="font-semibold text-lg mt-4 md:text-2xl">お砂糖届け出市役所へようこそ！</p>
+      <p className="decoration-clone text-lg my-4 md:text-2xl">お砂糖届け出市役所</p>
 
       <Card
         image={exampleSugar}
         title="あなたのお砂糖婚姻届け画像を生成します♡"
         text={[
+          'お砂糖届け出市役所へようこそ！',
           'お砂糖届け出市役所はおふたりのお砂糖届け画像を生成するサイトです🎉',
-          'おふたりには必要事項をそれぞれ記入していただき、それを元にお砂糖届けを自動でお作りいたします✨',
+          '　',
+          'おふたりには必要事項をそれぞれ記入していただき、それを送りあうことで、お砂糖届けを自動でお作りいたします✨',
           '　',
           'それでは、すてきなお砂糖ライフを💗',
         ]}
         hashTags={['#ご報告', '#お砂糖しました', '#だいすき', '#ずっと一緒']}
-        className="p-4 md:w-3/4"
+        className="p-4 md:w-1/2"
       />
+
+      <div className="border-t-2 border-dotted border-pink-400 w-1/2 h-2 mt-8">　</div>
+
+      <p className="my-4">
+        Created by sisters{' '}
+        <a href="https://twitter.com/senka_ai_vrchat" className="link">
+          千夏あい
+        </a>{' '}
+        and{' '}
+        <a href="https://twitter.com/public_ai000ya" className="link">
+          あいや
+        </a>
+      </p>
     </main>
   </div>
 )
