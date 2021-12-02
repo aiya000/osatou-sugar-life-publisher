@@ -7,6 +7,9 @@ const Navbar: FunctionComponent = () => (
     <Link href="/">
       <a className="btn">{title}</a>
     </Link>
+
+    <Link href="/input">
+      <a className="btn">発行する</a>
     </Link>
   </div>
 )

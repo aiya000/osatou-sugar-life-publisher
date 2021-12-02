@@ -19,6 +19,5 @@ a {
 /* ↓ Components ↓ */
 
 .btn {
-  @apply rounded-lg bg-white text-pink-500 font-extrabold hover:text-black hover:bg-pink-100 p-2;
+  @apply border-2 border-pink-400 rounded-lg bg-white text-pink-500 font-extrabold hover:bg-pink-100 p-2;
 }
-

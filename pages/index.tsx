@@ -1,5 +1,6 @@
 import Card from '@/components/Card'
 import Head from 'next/head'
+import Link from 'next/link'
 import exampleSugar from '~/images/example-sugar.png'
 import { NextPage } from 'next'
 import { title } from '@/data/title'
@@ -29,6 +30,12 @@ const Home: NextPage = () => (
         hashTags={['#ご報告', '#お砂糖しました', '#だいすき', '#ずっと一緒']}
         className="p-4 md:w-1/2"
       />
+
+      <div className="mt-6">
+        <Link href="/input">
+          <a className="btn text-pink-500">発行する</a>
+        </Link>
+      </div>
 
       <div className="border-t-2 border-dotted border-pink-400 w-1/2 h-2 mt-8">　</div>
 
