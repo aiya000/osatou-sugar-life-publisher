@@ -10,11 +10,12 @@ const Home: NextPage = () => (
     <Head>
       <title>{title}</title>
       <meta name="description" content={title} />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="icon" href="/favicon.ico" />
     </Head>
 
     <main className="flex flex-col items-center">
-      <p className="font-extrabold text-pink-500 text-lg my-4 md:text-2xl">{title}</p>
+      <p className="font-extrabold text-pink-400 text-lg my-4 md:text-2xl">{title}</p>
 
       <Card
         image={exampleSugar}
@@ -32,7 +33,7 @@ const Home: NextPage = () => (
       />
 
       <div className="mt-6">
-        <Link href="/input">
+        <Link href="/sheet">
           <a className="btn text-pink-500">発行する</a>
         </Link>
       </div>
