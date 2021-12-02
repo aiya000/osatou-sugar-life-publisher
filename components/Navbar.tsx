@@ -24,14 +24,18 @@ const Navbar: FunctionComponent = () => {
 
         {/* For PC */}
         <div className="flex justify-end ml-1 w-0 h-0 md:w-auto md:h-auto">
-          <div className="flex justify-end ml-1 invisible md:visible">{Links}</div>
+          <div className="flex justify-end ml-1 invisible md:visible">
+            <Links />
+          </div>
         </div>
       </div>
 
       {isMenuOpening && (
         <div className="absolute flex flex-row">
           <div className="w-1/4v">　</div>
-          <div className="w-3/4v h-screen bg-pink-100 flex flex-col">{Links}</div>
+          <div className="w-3/4v h-screen bg-pink-100 flex flex-col">
+            <Links />
+          </div>
         </div>
       )}
     </>
