@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import { FunctionComponent } from 'react'
+import { classNames } from '@/data/components'
 
 interface Props {
   image?: StaticImageData
@@ -19,9 +20,8 @@ interface Props {
 }
 
 const Card: FunctionComponent<Props> = ({ image, title, text, hashTags, className }) => (
-  <div className={`rounded overflow-hidden shadow-lg ${className}`}>
+  <div className={classNames('rounded overflow-hidden shadow-lg', className)}>
     {image && (
-      /* Reference for responsive with Image: https://stackoverflow.com/questions/64846858/how-to-use-tailwind-css-with-next-js-image */
       <Image src={image} alt="An example of a sugar" layout="responsive" objectFit="cover" />
     )}
 
@@ -33,6 +33,7 @@ const Card: FunctionComponent<Props> = ({ image, title, text, hashTags, classNam
         </p>
       ))}
     </div>
+
     <div className="px-6 pt-4 pb-2">
       {hashTags?.map((hashTag, i) => (
         <span
