@@ -9,8 +9,7 @@ html, body {
 }
 
 a {
-  color: inherit;
-  text-decoration: none;
+  @apply text-blue-700 hover:text-blue-500
 }
 
 * {
@@ -23,7 +22,3 @@ a {
   @apply rounded-lg bg-white text-pink-500 font-extrabold hover:text-black hover:bg-pink-100 p-2;
 }
 
-.link {
-  /* NOTE: Why Next.js doesn't apply default highlight for href? */
-  @apply text-blue-700 hover:text-blue-500
-}
