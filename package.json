@@ -1,8 +1,9 @@
 {
   "name": "sitter",
+  "license": "MIT",
   "scripts": {
     "dev": "next dev",
-    "build": "next build && next export",
+    "build": "env NODE_ENV='production' next build && env NODE_ENV='production' next export",
     "start": "next start",
     "lint": "next lint"
   },
