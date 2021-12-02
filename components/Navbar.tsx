@@ -6,16 +6,6 @@ const Navbar: FunctionComponent = () => (
     <Link href="/">
       <a className="btn">お砂糖届け出市役所</a>
     </Link>
-
-    {/*
-      NOTE:
-      「タイトルをクリックするとHomeに戻る」
-      っていうのは案外、知らない人はいるらしいので、
-      明示的なナビゲーションも用意しておく
-    */}
-    <Link href="/">
-      <a className="btn">Home</a>
-    </Link>
   </div>
 )
 
