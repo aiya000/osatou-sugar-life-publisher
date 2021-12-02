@@ -1,19 +1,26 @@
 import Link from 'next/link'
 import { FunctionComponent } from 'react'
+import { classNames } from '@/data/components'
+
+interface Props {
+  className?: string
+}
 
 /**
  * For Navbar, or else.
  */
-const Links: FunctionComponent = () => (
-  <>
-    <Link href="/about">
-      <a className="btn">これなに？</a>
+const links: Array<FunctionComponent<Props>> = [
+  ({ className }) => (
+    <Link href="/about" key="about">
+      <a className={classNames('btn', className)}>これなに？</a>
     </Link>
+  ),
 
-    <Link href="/sheet">
-      <a className="btn ml-1">発行する</a>
+  ({ className }) => (
+    <Link href="/sheet" key="sheet">
+      <a className={classNames('btn', className)}>発行する</a>
     </Link>
-  </>
-)
+  ),
+]
 
-export default Links
+export default links

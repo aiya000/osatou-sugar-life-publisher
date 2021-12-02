@@ -1,8 +1,8 @@
 import Link from 'next/link'
-import Links from '@/components/Links'
+import links from '@/components/Links'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { FunctionComponent, useState } from 'react'
-import { faBars, faChevronCircleRight } from '@fortawesome/free-solid-svg-icons'
+import { faBars } from '@fortawesome/free-solid-svg-icons'
 import { title } from '@/data/title'
 
 const Navbar: FunctionComponent = () => {
@@ -25,7 +25,9 @@ const Navbar: FunctionComponent = () => {
         {/* For PC */}
         <div className="flex justify-end ml-1 w-0 h-0 md:w-auto md:h-auto">
           <div className="flex justify-end ml-1 invisible md:visible">
-            <Links />
+            {links.map((ALink, i) => (
+              <ALink className="ml-1" key={i} />
+            ))}
           </div>
         </div>
       </div>
@@ -33,8 +35,10 @@ const Navbar: FunctionComponent = () => {
       {isMenuOpening && (
         <div className="absolute flex flex-row">
           <div className="w-1/4v">　</div>
-          <div className="w-3/4v h-screen bg-pink-100 flex flex-col">
-            <Links />
+          <div className="w-3/4v h-screen bg-pink-100 items-center flex flex-col border-2 border-pink-400 rounded-lg">
+            {links.map((ALink, i) => (
+              <ALink className="w-3/4 mt-2 flex flex-col items-center" key={i} />
+            ))}
           </div>
         </div>
       )}
