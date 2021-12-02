@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import { FunctionComponent } from 'react'
 import { classNames } from '@/data/components'
 
@@ -21,9 +20,7 @@ interface Props {
 
 const Card: FunctionComponent<Props> = ({ image, title, text, hashTags, className }) => (
   <div className={classNames('rounded overflow-hidden shadow-lg', className)}>
-    {image && (
-      <Image src={image} alt="An example of a sugar" layout="responsive" objectFit="cover" />
-    )}
+    {image && <img src={image.src} alt="An example of a sugar" />}
 
     <div className="px-6 py-4">
       {title && <div className="font-bold text-xl mb-4">{title}</div>}
