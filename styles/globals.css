@@ -16,6 +16,18 @@ a {
   box-sizing: border-box;
 }
 
+/* ↓ Tailwind ↓ */
+
+@layer utilities {
+  .w-1\/4v {
+    width: 25vw;
+  }
+
+  .w-3\/4v {
+    width: 75vw;
+  }
+}
+
 /* ↓ Components ↓ */
 
 .btn {
