@@ -11,17 +11,32 @@ const Sheet: NextPage = () => (
     </Head>
 
     <main className="flex flex-col items-center">
-      {/* NOTE: FontAwesome使いたくなったら使う */}
-      <p>お砂糖と言っても多種多様な種類があります✨</p>
-      <p>
-        そこでお互いがすれ違ってしまうことも、多くあると聞きます😥
-        <span className="text-xs">作者のかたわらもそのひとりです</span>
+      <p className="font-extrabold text-pink-400 text-lg my-4 md:text-2xl">
+        このサイトの目的っぽいもの
       </p>
 
-      <p>
-        そこで本サイトはお砂糖文化を盛り上げ、 壮大にいちゃいちゃしていただくこと、
-        そしてそれと同時に前述のすれ違いをできるかぎり事前回避してもらえることを目的にしています💕
-      </p>
+      <div className="text-box p-4">
+        {/* NOTE: FontAwesome使いたくなったら使う */}
+
+        <p>お砂糖と言っても多種多様な種類があります✨</p>
+        <p>
+          そこでお互いが<span className="font-bold">すれ違ってしまう</span>
+          ことも、多くあると聞きます😢
+        </p>
+        <p className="mt-2 text-xs">作者のかたわらもそのひとりです💦</p>
+
+        <p className="mt-4">
+          そこで本サイトはお砂糖文化を盛り上げ、 壮大にいちゃいちゃしていただくこと、
+        </p>
+        <p>
+          そしてそれと同時に前述の<span className="font-bold">すれ違いをできるかぎり事前回避</span>
+          してもらえることを目的にしています💕
+        </p>
+
+        <p className="mt-4">
+          どうか青くかがやくく春のような、お砂糖シュガーライフを満喫してください♡
+        </p>
+      </div>
     </main>
   </div>
 )
