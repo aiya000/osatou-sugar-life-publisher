@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import links from '@/components/Links'
+import links from '@/components/links'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { FunctionComponent, useState } from 'react'
 import { faBars, faTimesCircle } from '@fortawesome/free-solid-svg-icons'
