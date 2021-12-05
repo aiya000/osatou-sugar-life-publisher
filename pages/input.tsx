@@ -24,14 +24,23 @@ const withYouUnref: Readonly<Array<WantedThing>> = [
   'ボイチャ',
   '作業通話',
   'VR睡眠',
+  'VR感度開発',
   'DM（Discordなど）',
   'リアルで会う',
   'ボイトレ',
 ].map((text) => ({ text, item: 0 }))
 
-const andYouUnref: Readonly<Array<WantedThing>> = ['キス', 'みみなめ', 'あいぶ', 'ほんばん'].map(
-  (text) => ({ text, item: 0 }),
-)
+const andYouUnref: Readonly<Array<WantedThing>> = [
+  'なでなで',
+  'だきつき',
+  'キス',
+  'みみなめ',
+  '服を脱ぐ',
+  '服を脱がす',
+  'あいぶ（上半身）',
+  'あいぶ（下半身）',
+  'ほんばん',
+].map((text) => ({ text, item: 0 }))
 
 /**
  * To make a request for 砂糖婚姻届け（[[Sheet]]）.
