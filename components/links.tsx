@@ -17,7 +17,7 @@ const links: Array<FunctionComponent<Props>> = [
   ),
 
   ({ className }) => (
-    <Link href="/sheet" key="sheet">
+    <Link href="/input" key="input">
       <a className={classNames('btn', className)}>発行する</a>
     </Link>
   ),
