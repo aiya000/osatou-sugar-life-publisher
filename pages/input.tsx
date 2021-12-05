@@ -135,6 +135,13 @@ const Input: NextPage = () => {
         </section>
 
         <p className="mt-4">□ 婚姻届けにえっちな情報を表示する</p>
+
+        <div className="border-t-2 border-dotted border-pink-400 w-1/2 h-2 mt-8">　</div>
+
+        <footer className="my-4">
+          Created by sisters <a href="https://twitter.com/senka_ai_vrchat">千夏あい</a> and{' '}
+          <a href="https://twitter.com/public_ai000ya">あいや</a>
+        </footer>
       </main>
     </div>
   )
