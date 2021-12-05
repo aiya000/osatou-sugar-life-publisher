@@ -30,10 +30,10 @@ a {
 
 /* ↓ Components ↓ */
 
-.text-box {
-  @apply border-2 border-pink-400 rounded-lg bg-white p-2
+.rounded-box {
+  @apply border-2 border-pink-400 rounded-lg bg-white p-4
 }
 
 .btn {
-  @apply text-box text-pink-500 font-extrabold hover:bg-pink-100;
+  @apply rounded-box text-pink-500 font-extrabold hover:bg-pink-100;
 }

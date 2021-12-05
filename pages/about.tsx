@@ -15,7 +15,7 @@ const Sheet: NextPage = () => (
         このサイトの目的っぽいもの
       </p>
 
-      <div className="text-box p-4">
+      <div className="rounded-box">
         {/* NOTE: FontAwesome使いたくなったら使う */}
 
         <p>お砂糖と言っても多種多様な種類があります✨</p>
