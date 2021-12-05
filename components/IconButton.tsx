@@ -8,9 +8,9 @@ interface Props {
   text: string
 
   /**
-   * 0 is negative.
-   * 1 is positive.
-   * 2 is question.
+   * 0 is question.
+   * 1 is negative.
+   * 2 is positive.
    */
   current: Switch3Item
 
@@ -30,14 +30,14 @@ const IconButton: FunctionComponent<Props> = ({ current, text, onClick, classNam
       'border-2 rounded-lg p-2 flex flex-row justify-end items-center',
       fold(
         current,
-        'border-gray-400 bg-gray-100 text-gray-500',
+        'border-gray-200 bg-white-100 text-black-500',
         'border-green-400 bg-green-100 text-green-500',
-        'border-yellow-400 bg-yellow-100 text-yellow-500',
+        'border-gray-400 bg-gray-100 text-gray-500',
       ),
       className,
     )}
   >
-    <FontAwesomeIcon icon={fold(current, faTimesCircle, faCircle, faQuestionCircle)} width={25} />
+    <FontAwesomeIcon icon={fold(current, faQuestionCircle, faCircle, faTimesCircle)} width={25} />
     <div className="ml-1">{text}</div>
   </button>
 )
