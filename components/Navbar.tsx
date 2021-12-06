@@ -2,11 +2,12 @@ import Link from 'next/link'
 import brandIcon from '~/images/brand-icon.png'
 import links from '@/components/links'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { FunctionComponent, useState } from 'react'
+import { FC } from 'react'
 import { faBars, faTimesCircle } from '@fortawesome/free-solid-svg-icons'
+import { useBoolean } from 'react-hanger/array'
 
-const Navbar: FunctionComponent = () => {
-  const [isMenuOpening, setIsMenuOpening] = useState(false)
+const Navbar: FC = () => {
+  const [menuIsOpening, { toggle: toggleMenuIsOpening }] = useBoolean(false)
 
   return (
     <div>
@@ -19,9 +20,9 @@ const Navbar: FunctionComponent = () => {
 
         {/* For mobile devices */}
         <div className="flex justify-end w-1/2 ml-1 visible md:invisible">
-          <button onClick={() => setIsMenuOpening(!isMenuOpening)}>
+          <button onClick={toggleMenuIsOpening}>
             <FontAwesomeIcon
-              icon={isMenuOpening ? faTimesCircle : faBars}
+              icon={menuIsOpening ? faTimesCircle : faBars}
               width={40}
               className="text-pink-500"
             />
@@ -39,9 +40,9 @@ const Navbar: FunctionComponent = () => {
       </div>
 
       {/* A burger menu body */}
-      {isMenuOpening && (
+      {menuIsOpening && (
         <div className="absolute flex flex-row">
-          <button className="w-1/4v" onClick={() => setIsMenuOpening(false)}>
+          <button className="w-1/4v" onClick={toggleMenuIsOpening}>
             　
           </button>
           <div className="w-3/4v h-screen bg-pink-100 items-center flex flex-col border-2 border-pink-400 rounded-lg">
