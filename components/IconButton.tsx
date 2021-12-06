@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { FunctionComponent } from 'react'
 import { Switch3Item, fold } from '@/data/hooks/switch3'
 import { classNames } from '@/data/components'
-import { faCircle, faQuestionCircle, faTimesCircle } from '@fortawesome/free-regular-svg-icons'
+import { faThumbsUp, faQuestionCircle, faTimesCircle } from '@fortawesome/free-regular-svg-icons'
 
 interface Props {
   text: string
@@ -32,12 +32,12 @@ const IconButton: FunctionComponent<Props> = ({ current, text, onClick, classNam
         current,
         'border-gray-200 bg-white-100 text-black-500',
         'border-green-400 bg-green-100 text-green-500',
-        'border-gray-400 bg-gray-100 text-gray-500',
+        'border-red-400 bg-red-100 text-red-500',
       ),
       className,
     )}
   >
-    <FontAwesomeIcon icon={fold(current, faQuestionCircle, faCircle, faTimesCircle)} width={25} />
+    <FontAwesomeIcon icon={fold(current, faQuestionCircle, faThumbsUp, faTimesCircle)} width={25} />
     <div className="ml-1">{text}</div>
   </button>
 )
