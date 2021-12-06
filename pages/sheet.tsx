@@ -11,7 +11,9 @@ const Sheet: NextPage = () => (
       <link rel="icon" href="/favicon.ico" />
     </Head>
 
-    <main className="flex flex-col items-center"></main>
+    <main className="flex flex-col items-center">
+      <p className="mt-4">□ えっちな情報を表示する</p>
+    </main>
   </div>
 )
 

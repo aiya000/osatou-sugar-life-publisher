@@ -9,6 +9,7 @@ import { faExclamation } from '@fortawesome/free-solid-svg-icons'
 import { faThumbsUp, faQuestionCircle, faTimesCircle } from '@fortawesome/free-regular-svg-icons'
 import { mutableArray } from '@/data/mutable'
 import { title } from '@/data/title'
+import { useBoolean } from 'react-hanger/array'
 import { useIndexed } from '@/data/hooks/useIndexed'
 
 /**
@@ -31,10 +32,12 @@ const withYouUnref: Readonly<Array<WantedThing>> = [
   'ボイトレ',
 ].map((text) => ({ text, item: 0 }))
 
-const andYouUnref: Readonly<Array<WantedThing>> = [
-  'なでなで',
-  'だきつき',
-  'キス',
+const andYouUnref: Readonly<Array<WantedThing>> = ['なでなで', 'だきつき', 'キス'].map((text) => ({
+  text,
+  item: 0,
+}))
+
+const andYouEcchiUnref: Readonly<Array<WantedThing>> = [
   'みみなめ',
   '服を脱ぐ',
   '服を脱がす',
@@ -66,8 +69,27 @@ const Input: NextPage = () => {
     item,
     doSwitch: () => switchAndYouItem(i),
   }))
+
   const toYouComponents = cloneDeep(andYouComponents)
   const fromYouComponents = cloneDeep(andYouComponents)
+
+  const [andYouEcchi, switchAndYouEcchiItem] = useIndexed(
+    mutableArray(andYouEcchiUnref),
+    ({ text, item }) => ({
+      text,
+      item: increment(item),
+    }),
+  )
+  const andYouEcchiComponents = andYouEcchi.map(({ text, item }, i) => ({
+    text,
+    item,
+    doSwitch: () => switchAndYouEcchiItem(i),
+  }))
+
+  const toYouEcchiComponents = cloneDeep(andYouEcchiComponents)
+  const [toYouEcchiIsVisible, actionsToYouEcchiIsVisible] = useBoolean(false)
+  const fromYouEcchiComponents = cloneDeep(andYouEcchiComponents)
+  const [fromYouEcchiIsVisible, actionsFromYouEcchiIsVisible] = useBoolean(false)
 
   return (
     <div>
@@ -124,6 +146,27 @@ const Input: NextPage = () => {
               />
             ))}
           </div>
+
+          <input
+            type="checkbox"
+            checked={toYouEcchiIsVisible}
+            onChange={actionsToYouEcchiIsVisible.toggle}
+            id="toYouEcchi"
+          />
+          <label htmlFor="toYouEcchi">えっちな項目を表示する</label>
+          {toYouEcchiIsVisible && (
+            <div className="flex flex-row flex-wrap">
+              {toYouEcchiComponents.map(({ text, item, doSwitch }) => (
+                <IconButton
+                  text={text}
+                  current={item}
+                  onClick={doSwitch}
+                  key={text}
+                  className="m-2"
+                />
+              ))}
+            </div>
+          )}
         </section>
 
         <section className="rounded-box w-3/4v mt-6">
@@ -142,9 +185,28 @@ const Input: NextPage = () => {
               />
             ))}
           </div>
-        </section>
 
-        <p className="mt-4">□ 婚姻届けにえっちな情報を表示する</p>
+          <input
+            type="checkbox"
+            checked={fromYouEcchiIsVisible}
+            onChange={actionsFromYouEcchiIsVisible.toggle}
+            id="fromYouEcchi"
+          />
+          <label htmlFor="fromYouEcchi">えっちな項目を表示する</label>
+          {fromYouEcchiIsVisible && (
+            <div className="flex flex-row flex-wrap">
+              {fromYouEcchiComponents.map(({ text, item, doSwitch }) => (
+                <IconButton
+                  text={text}
+                  current={item}
+                  onClick={doSwitch}
+                  key={text}
+                  className="m-2"
+                />
+              ))}
+            </div>
+          )}
+        </section>
 
         <div className="border-t-2 border-dotted border-pink-400 w-1/2 h-2 mt-8">　</div>
 
