@@ -6,6 +6,7 @@ import { NextPage } from 'next'
 import { Switch3Item, useSwitch3, increment } from '@/data/hooks/switch3'
 import { cloneDeep } from 'lodash'
 import { faExclamation } from '@fortawesome/free-solid-svg-icons'
+import { faThumbsUp, faQuestionCircle, faTimesCircle } from '@fortawesome/free-regular-svg-icons'
 import { mutableArray } from '@/data/mutable'
 import { title } from '@/data/title'
 import { useIndexed } from '@/data/hooks/useIndexed'
@@ -161,15 +162,32 @@ export default Input
 const ExapleButton: FC = () => {
   const { item, doSwitch } = useSwitch3(0)
   return (
-    <div>
+    <div className="flex flex-col items-center">
       <div className="flex flex-row items-center">
         <FontAwesomeIcon icon={faExclamation} width={10} className="text-pink-200" />
         <p className="ml-2">操作説明</p>
       </div>
 
-      <div className="flex flex-row items-center mt-4">
+      <div className="flex flex-col items-center mt-4">
+        <p>↓押して切り替える</p>
         <IconButton text="お試し" current={item} onClick={doSwitch} className="m-2" />
-        <p className="ml-2">←押して切り替える</p>
+      </div>
+
+      <div className="flex flex-col mt-4">
+        <div className="flex flex-row">
+          <FontAwesomeIcon icon={faQuestionCircle} width={25} />
+          <p className="ml-2">←まだわからない</p>
+        </div>
+
+        <div className="flex flex-row mt-2">
+          <FontAwesomeIcon icon={faThumbsUp} width={25} />
+          <p className="ml-2">←したい</p>
+        </div>
+
+        <div className="flex flex-row mt-2">
+          <FontAwesomeIcon icon={faTimesCircle} width={25} />
+          <p className="ml-2">←したくない</p>
+        </div>
       </div>
     </div>
   )
