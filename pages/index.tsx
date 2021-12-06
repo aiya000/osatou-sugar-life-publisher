@@ -39,7 +39,7 @@ const Home: NextPage = () => (
       />
 
       <div className="mt-6">
-        <Link href="/sheet">
+        <Link href="/input">
           <a className="btn text-pink-500">発行する</a>
         </Link>
       </div>
