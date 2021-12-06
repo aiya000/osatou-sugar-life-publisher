@@ -1,18 +1,20 @@
 import Link from 'next/link'
+import brandIcon from '~/images/brand-icon.png'
 import links from '@/components/links'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { FunctionComponent, useState } from 'react'
 import { faBars, faTimesCircle } from '@fortawesome/free-solid-svg-icons'
-import { title } from '@/data/title'
 
 const Navbar: FunctionComponent = () => {
   const [isMenuOpening, setIsMenuOpening] = useState(false)
 
   return (
     <div>
-      <div className="flex justify-between items-center bg-pink-300 p-4 h-16">
+      <div className="flex justify-between items-center bg-pink-300 px-4 py-2">
         <Link href="/">
-          <a className="btn">{title}</a>
+          <a className="btn flex flex-row items-center">
+            <img src={brandIcon.src} alt="brand-icon" className="w-10 h-8" />
+          </a>
         </Link>
 
         {/* For mobile devices */}

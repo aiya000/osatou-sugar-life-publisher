@@ -1,6 +1,7 @@
 import Card from '@/components/Card'
 import Head from 'next/head'
 import Link from 'next/link'
+import brandIcon from '~/images/brand-icon.png'
 import exampleSugar from '~/images/example-sugar.png'
 import { NextPage } from 'next'
 import { title } from '@/data/title'
@@ -15,7 +16,14 @@ const Home: NextPage = () => (
     </Head>
 
     <main className="flex flex-col items-center">
-      <p className="font-extrabold text-pink-400 text-lg my-4 md:text-2xl">{title}</p>
+      <div className="mt-4 px-2 py-1">
+        <div className="py-2 border-t-2 border-b-2 border-pink-400">
+          <div className="mx-8 flex flex-row justify-center items-center">
+            <img src={brandIcon.src} alt="brand-icon" className="w-16 h-18" />
+            <p className="ml-2 font-extrabold text-pink-400 text-lg md:text-2xl">{title}</p>
+          </div>
+        </div>
+      </div>
 
       <Card
         image={exampleSugar}
@@ -35,7 +43,7 @@ const Home: NextPage = () => (
           '#ずっと一緒',
           '#お砂糖シュガーライフ',
         ]}
-        className="p-4 md:w-1/2"
+        className="m-4 p-4 md:w-1/2"
       />
 
       <div className="mt-6">
