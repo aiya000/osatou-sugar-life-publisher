@@ -37,3 +37,11 @@ a {
 .btn {
   @apply rounded-box text-pink-500 font-extrabold hover:bg-pink-100;
 }
+
+.show-only-mobile {
+  @apply w-auto visible md:w-0 md:invisible;
+}
+
+.show-only-desktop {
+  @apply w-0 h-0 invisible md:w-auto md:h-auto md:visible;
+}

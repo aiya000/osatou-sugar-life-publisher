@@ -11,31 +11,25 @@ const Navbar: FC = () => {
 
   return (
     <div>
-      <div className="flex justify-between items-center bg-pink-300 px-4 py-2">
+      <div className="bg-pink-300 h-20">
         <Link href="/">
-          <a className="btn flex flex-row items-center">
+          <a className="btn flex flex-row justify-center w-20 h-16 absolute left-2 top-2">
             <img src={brandIcon.src} alt="brand-icon" className="w-10 h-8" />
           </a>
         </Link>
 
-        {/* For mobile devices */}
-        <div className="flex justify-end w-1/2 ml-1 visible md:invisible">
-          <button onClick={toggleMenuIsOpening}>
-            <FontAwesomeIcon
-              icon={menuIsOpening ? faTimesCircle : faBars}
-              width={40}
-              className="text-pink-500"
-            />
-          </button>
-        </div>
+        <button onClick={toggleMenuIsOpening} className="show-only-mobile absolute top-4 right-6">
+          <FontAwesomeIcon
+            icon={menuIsOpening ? faTimesCircle : faBars}
+            width={40}
+            className="text-pink-500"
+          />
+        </button>
 
-        {/* For PC */}
-        <div className="flex justify-end ml-1 w-0 h-0 md:w-auto md:h-auto">
-          <div className="flex justify-end ml-1 invisible md:visible">
-            {links.map((ALink, i) => (
-              <ALink className="ml-1" key={i} />
-            ))}
-          </div>
+        <div className="show-only-desktop flex flex-row absolute top-2 right-2">
+          {links.map((ALink, i) => (
+            <ALink className="ml-1 h-16" key={i} />
+          ))}
         </div>
       </div>
 
