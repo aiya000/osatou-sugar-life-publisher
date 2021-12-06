@@ -21,9 +21,9 @@ interface Switch3 {
 }
 
 export function increment(x: Switch3Item): Switch3Item {
-  const maxSwitchItem: Switch3Item = 2
+  const maxSwitchItem = 2
 
-  const result = (x + 1) % maxSwitchItem
+  const result = (x + 1) % (maxSwitchItem + 1)
   ensureItem(result)
 
   return result
