@@ -18,7 +18,7 @@ export interface HopeToDoProps {
 
 const HopeToDo: FC<HopeToDoProps> = ({ sectionName, components, children }) => (
   <section className="rounded-box w-3/4v mt-6">
-    {sectionName && <p className="text-lg my-4 md:text-2xl">{sectionName}</p>}
+    {sectionName && <div className="text-lg my-4 md:text-2xl">{sectionName}</div>}
 
     <div className="flex flex-row flex-wrap">
       {components.map(({ text, item, doSwitch }) => (
