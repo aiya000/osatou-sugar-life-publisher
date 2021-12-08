@@ -1,9 +1,9 @@
 import Head from 'next/head'
+import HopeToDo, { HopeToDoProps, HopeToDoItem } from '@/components/HopeToDo'
 import IconButton from '@/components/IconButton'
-import { FC, ReactElement } from 'react'
+import { FC } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { NextPage } from 'next'
-import { Switch3Item, useSwitch3, increment } from '@/data/hooks/switch3'
 import { cloneDeep } from 'lodash'
 import { faExclamation } from '@fortawesome/free-solid-svg-icons'
 import { faThumbsUp, faQuestionCircle, faTimesCircle } from '@fortawesome/free-regular-svg-icons'
@@ -11,14 +11,7 @@ import { mutableArray } from '@/data/mutable'
 import { title } from '@/data/title'
 import { useBoolean } from 'react-hanger/array'
 import { useIndexed } from '@/data/hooks/useIndexed'
-
-/**
- * What you want to do.
- */
-interface HopeToDoItem {
-  text: string
-  item: Switch3Item
-}
+import { useSwitch3, increment } from '@/data/hooks/switch3'
 
 const withYouUnref: Readonly<Array<HopeToDoItem>> = [
   'お話し',
@@ -199,25 +192,6 @@ const ExapleButton: FC = () => {
     </div>
   )
 }
-
-interface HopeToDoProps {
-  sectionName?: ReactElement
-  components: Array<HopeToDoItem & { doSwitch: () => void }>
-}
-
-const HopeToDo: FC<HopeToDoProps> = ({ sectionName, components, children }) => (
-  <section className="rounded-box w-3/4v mt-6">
-    {sectionName && <p className="text-lg my-4 md:text-2xl">{sectionName}</p>}
-
-    <div className="flex flex-row flex-wrap">
-      {components.map(({ text, item, doSwitch }) => (
-        <IconButton text={text} current={item} onClick={doSwitch} key={text} className="m-2" />
-      ))}
-    </div>
-
-    {children}
-  </section>
-)
 
 type HopeToEcchiProps = HopeToDoProps & {
   isVisible: boolean
