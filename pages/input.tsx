@@ -197,7 +197,7 @@ type HopeToEcchiProps = HopeToDoProps & {
 }
 
 const HopeToEcchi: FC<HopeToEcchiProps> = ({ isVisible, toggleIsVisible, components }) => {
-  const checkboxId = Math.random().toString()
+  const checkboxId = 'hope-to-ecchi-checkbox' // NOTE: Why this can be used two or more times?
   return (
     <>
       <input type="checkbox" checked={isVisible} onChange={toggleIsVisible} id={checkboxId} />
