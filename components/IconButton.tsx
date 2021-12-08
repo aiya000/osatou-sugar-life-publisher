@@ -1,3 +1,4 @@
+import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { FunctionComponent } from 'react'
 import { Switch3Item, fold } from '@/data/hooks/switch3'
