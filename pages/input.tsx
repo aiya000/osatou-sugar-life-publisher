@@ -25,11 +25,17 @@ const withYouUnref: Readonly<Array<HopeToDoItem>> = [
   'ボイトレ',
 ].map((text) => ({ text, item: 0 }))
 
+/**
+ * Items of 'to' you and 'from' you.
+ */
 const andYouUnref: Readonly<Array<HopeToDoItem>> = ['なでなで', 'だきつき', 'キス'].map((text) => ({
   text,
   item: 0,
 }))
 
+/**
+ * Ecchi items of 'to' you and 'from' you.
+ */
 const andYouEcchiUnref: Readonly<Array<HopeToDoItem>> = [
   'みみなめ',
   '服を脱ぐ',
@@ -40,7 +46,7 @@ const andYouEcchiUnref: Readonly<Array<HopeToDoItem>> = [
 ].map((text) => ({ text, item: 0 }))
 
 /**
- * To make a request for 砂糖婚姻届け（[[Sheet]]）.
+ * To make a request for [[Sheet]].
  */
 const Input: NextPage = () => {
   const [withYou, switchWithYouItem] = useIndexed(mutableArray(withYouUnref), ({ text, item }) => ({
@@ -105,23 +111,14 @@ const Input: NextPage = () => {
           <ExapleButton />
         </section>
 
-        <section className="rounded-box w-3/4v mt-6">
-          <p className="text-lg my-4 md:text-2xl">
-            あなたが相手<span className="font-bold">と</span>したいこと
-          </p>
-
-          <div className="flex flex-row flex-wrap">
-            {withYouComponents.map(({ text, item, doSwitch }) => (
-              <IconButton
-                text={text}
-                current={item}
-                onClick={doSwitch}
-                key={text}
-                className="m-2"
-              />
-            ))}
-          </div>
-        </section>
+        <HopeToDo
+          sectionName={
+            <div>
+              あなたが相手<span className="font-bold">と</span>したいこと
+            </div>
+          }
+          components={withYouComponents}
+        />
 
         <HopeToDo
           sectionName={
