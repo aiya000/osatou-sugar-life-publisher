@@ -1,5 +1,6 @@
-import { FunctionComponent } from 'react'
 import Navbar from '@/components/Navbar'
+import React from 'react'
+import { FunctionComponent } from 'react'
 
 const Layout: FunctionComponent = ({ children }) => (
   <>

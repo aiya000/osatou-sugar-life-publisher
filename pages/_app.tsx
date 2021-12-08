@@ -1,8 +1,9 @@
 // eslint-disable-next-line import/no-unassigned-import
 import '../styles/globals.css'
 
-import { AppProps } from 'next/app'
 import Layout from '@/components/layout'
+import React from 'react'
+import { AppProps } from 'next/app'
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   return (

@@ -1,8 +1,9 @@
 import Link from 'next/link'
+import React from 'react'
 import brandIcon from '~/images/brand-icon.png'
 import links from '@/components/links'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { FC } from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faTimesCircle } from '@fortawesome/free-solid-svg-icons'
 import { useBoolean } from 'react-hanger/array'
 

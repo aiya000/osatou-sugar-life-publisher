@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import HopeToDo, { HopeToDoProps, HopeToDoItem } from '@/components/HopeToDo'
 import IconButton from '@/components/IconButton'
+import React from 'react'
 import { FC } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { NextPage } from 'next'
