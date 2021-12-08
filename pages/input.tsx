@@ -15,12 +15,12 @@ import { useIndexed } from '@/data/hooks/useIndexed'
 /**
  * What you want to do.
  */
-interface WantedPlayingItem {
+interface HopeToDoItem {
   text: string
   item: Switch3Item
 }
 
-const withYouUnref: Readonly<Array<WantedPlayingItem>> = [
+const withYouUnref: Readonly<Array<HopeToDoItem>> = [
   'お話し',
   'デート',
   'ボイチャ',
@@ -32,14 +32,12 @@ const withYouUnref: Readonly<Array<WantedPlayingItem>> = [
   'ボイトレ',
 ].map((text) => ({ text, item: 0 }))
 
-const andYouUnref: Readonly<Array<WantedPlayingItem>> = ['なでなで', 'だきつき', 'キス'].map(
-  (text) => ({
-    text,
-    item: 0,
-  }),
-)
+const andYouUnref: Readonly<Array<HopeToDoItem>> = ['なでなで', 'だきつき', 'キス'].map((text) => ({
+  text,
+  item: 0,
+}))
 
-const andYouEcchiUnref: Readonly<Array<WantedPlayingItem>> = [
+const andYouEcchiUnref: Readonly<Array<HopeToDoItem>> = [
   'みみなめ',
   '服を脱ぐ',
   '服を脱がす',
@@ -132,29 +130,35 @@ const Input: NextPage = () => {
           </div>
         </section>
 
-        <WantedPlaying
+        <HopeToDo
           sectionName={
             <div>
               あなたが相手<span className="font-bold">に</span>したいこと
             </div>
           }
           components={toYouComponents}
-          ecchiIsVisible={toYouEcchiIsVisible}
-          toggleEcchi={toggleToYouEcchiIsVisible}
-          ecchiComponents={toYouEcchiComponents}
-        />
+        >
+          <HopeToEcchi
+            isVisible={toYouEcchiIsVisible}
+            toggleIsVisible={toggleToYouEcchiIsVisible}
+            components={toYouEcchiComponents}
+          />
+        </HopeToDo>
 
-        <WantedPlaying
+        <HopeToDo
           sectionName={
             <div>
               あなたが相手<span className="font-bold">から</span>されたいこと
             </div>
           }
           components={fromYouComponents}
-          ecchiIsVisible={fromYouEcchiIsVisible}
-          toggleEcchi={toggleFromYouEcchiIsVisible}
-          ecchiComponents={fromYouEcchiComponents}
-        />
+        >
+          <HopeToEcchi
+            isVisible={fromYouEcchiIsVisible}
+            toggleIsVisible={toggleFromYouEcchiIsVisible}
+            components={fromYouEcchiComponents}
+          />
+        </HopeToDo>
       </main>
     </div>
   )
@@ -196,41 +200,37 @@ const ExapleButton: FC = () => {
   )
 }
 
-interface WantedPlayingProps {
-  sectionName: ReactElement
-  components: Array<WantedPlayingItem & { doSwitch: () => void }>
-  ecchiIsVisible: boolean
-  toggleEcchi: () => void
-  ecchiComponents: Array<WantedPlayingItem & { doSwitch: () => void }>
+interface HopeToDoProps {
+  sectionName?: ReactElement
+  components: Array<HopeToDoItem & { doSwitch: () => void }>
 }
 
-const WantedPlaying: FC<WantedPlayingProps> = ({
-  sectionName,
-  components,
-  ecchiIsVisible,
-  toggleEcchi,
-  ecchiComponents,
-}) => {
+const HopeToDo: FC<HopeToDoProps> = ({ sectionName, components, children }) => (
+  <section className="rounded-box w-3/4v mt-6">
+    {sectionName && <p className="text-lg my-4 md:text-2xl">{sectionName}</p>}
+
+    <div className="flex flex-row flex-wrap">
+      {components.map(({ text, item, doSwitch }) => (
+        <IconButton text={text} current={item} onClick={doSwitch} key={text} className="m-2" />
+      ))}
+    </div>
+
+    {children}
+  </section>
+)
+
+type HopeToEcchiProps = HopeToDoProps & {
+  isVisible: boolean
+  toggleIsVisible: () => void
+}
+
+const HopeToEcchi: FC<HopeToEcchiProps> = ({ isVisible, toggleIsVisible, components }) => {
   const checkboxId = Math.random().toString()
   return (
-    <section className="rounded-box w-3/4v mt-6">
-      <p className="text-lg my-4 md:text-2xl">{sectionName}</p>
-
-      <div className="flex flex-row flex-wrap">
-        {components.map(({ text, item, doSwitch }) => (
-          <IconButton text={text} current={item} onClick={doSwitch} key={text} className="m-2" />
-        ))}
-      </div>
-
-      <input type="checkbox" checked={ecchiIsVisible} onChange={toggleEcchi} id={checkboxId} />
+    <>
+      <input type="checkbox" checked={isVisible} onChange={toggleIsVisible} id={checkboxId} />
       <label htmlFor={checkboxId}>えっちな項目を表示する</label>
-      {ecchiIsVisible && (
-        <div className="flex flex-row flex-wrap">
-          {ecchiComponents.map(({ text, item, doSwitch }) => (
-            <IconButton text={text} current={item} onClick={doSwitch} key={text} className="m-2" />
-          ))}
-        </div>
-      )}
-    </section>
+      {isVisible && <HopeToDo components={components} />}
+    </>
   )
 }
