@@ -7,7 +7,7 @@
     "start": "next start",
     "lint": "next lint",
     "test": "npm run testify && jest",
-    "testify": "tsdoc-testify --fileMatch '(data|components|pages|styles)/**/*.tsx?'",
+    "testify": "tsdoc-testify --fileMatch '(data|components|pages|styles|test)/**/*.tsx?'",
     "test:watch": "watchexec --exts tsx,ts --ignore '**/*.doctest.ts' --restart -- npm run test",
     "test:clean": "rm **/*.doctest.ts"
   },
@@ -17,7 +17,8 @@
     "@fortawesome/free-regular-svg-icons": "^5.15.4",
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
     "@fortawesome/react-fontawesome": "^0.1.16",
-    "next": "12.0.4",
+    "@testing-library/jest-dom": "^5.16.1",
+    "next": "^12.0.7",
     "react": "17.0.2",
     "react-dom": "17.0.2"
   },
