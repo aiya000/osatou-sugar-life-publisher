@@ -1,6 +1,7 @@
 import Card from '@/components/Card'
 import Head from 'next/head'
 import Link from 'next/link'
+import React from 'react'
 import brandIcon from '~/images/brand-icon.png'
 import exampleSugar from '~/images/example-sugar.png'
 import { NextPage } from 'next'
