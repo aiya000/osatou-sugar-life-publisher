@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import React from 'react'
 import { NextPage } from 'next'
 import { title } from '@/data/title'
 
@@ -10,7 +11,7 @@ const Sheet: NextPage = () => (
       <link rel="icon" href="/favicon.ico" />
     </Head>
 
-    <main className="flex flex-col items-center">
+    <main className="flex flex-col items-center m-4">
       <p className="font-extrabold text-pink-400 text-lg my-4 md:text-2xl">
         このサイトの目的っぽいもの
       </p>
