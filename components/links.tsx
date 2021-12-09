@@ -5,21 +5,30 @@ import { classNames } from '@/data/components'
 
 interface Props {
   className?: string
+  onClick?: () => void
+}
+
+function orDoNothing(f?: () => void): () => void {
+  return f !== undefined ? f : () => {}
 }
 
 /**
  * For Navbar, or else.
  */
 const links: Array<FunctionComponent<Props>> = [
-  ({ className }) => (
+  ({ className, onClick }) => (
     <Link href="/about" key="about">
-      <a className={classNames('btn', className)}>これなに？</a>
+      <a className={classNames('btn', className)} onClick={orDoNothing(onClick)}>
+        これなに？
+      </a>
     </Link>
   ),
 
-  ({ className }) => (
+  ({ className, onClick }) => (
     <Link href="/input" key="input">
-      <a className={classNames('btn', className)}>発行する</a>
+      <a className={classNames('btn', className)} onClick={orDoNothing(onClick)}>
+        発行する
+      </a>
     </Link>
   ),
 ]

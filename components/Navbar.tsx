@@ -42,7 +42,11 @@ const Navbar: FC = () => {
           </button>
           <div className="w-3/4v h-screen bg-pink-100 items-center flex flex-col border-2 border-pink-400 rounded-lg">
             {links.map((ALink, i) => (
-              <ALink className="w-3/4 mt-2 flex flex-col items-center" key={i} />
+              <ALink
+                className="w-3/4 mt-2 flex flex-col items-center"
+                onClick={toggleMenuIsOpening}
+                key={i}
+              />
             ))}
           </div>
         </div>
