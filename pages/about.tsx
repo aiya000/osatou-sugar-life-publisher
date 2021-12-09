@@ -21,10 +21,8 @@ const Sheet: NextPage = () => (
 
         <p>お砂糖と言っても多種多様な種類があります✨</p>
         <p>
-          そこでお互いが<span className="font-bold">すれ違ってしまう</span>
-          ことも、多くあると聞きます😢
+          そこでお互いが<span className="font-bold">すれ違ってしまう</span>こともあります
         </p>
-        <p className="mt-2 text-xs">作者のかたわらもそのひとりです💦</p>
 
         <p className="mt-4">
           そこで本サイトはお砂糖文化を盛り上げ、 壮大にいちゃいちゃしていただくこと、
