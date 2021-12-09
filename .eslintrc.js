@@ -20,7 +20,6 @@ module.exports = {
     '@next/next/no-img-element': 'off', // Because next/image doesn't support SSG.
     '@typescript-eslint/adjacent-overload-signatures': 'error',
     '@typescript-eslint/array-type': ['error', { default: 'generic' }],
-    '@typescript-eslint/no-empty-function': 'error',
     '@typescript-eslint/no-empty-interface': 'warn',
     '@typescript-eslint/no-floating-promises': 'error',
     '@typescript-eslint/no-namespace': 'error',
@@ -81,6 +80,12 @@ module.exports = {
     ],
   },
 
+  '@typescript-eslint/no-empty-function': [
+    'error',
+    {
+      allow: ['arrowFunctions'],
+    },
+  ],
   settings: {
     jsdoc: {
       tagNamePreference: {
