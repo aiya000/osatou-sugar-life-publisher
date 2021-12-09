@@ -1,3 +1,4 @@
+import * as Arrays from '@/data/Array'
 import { Dispatch, useReducer } from 'react'
 
 /**
@@ -14,10 +15,7 @@ export function useIndexed<A>(
       throw new Error(`index must be greater than 0 ${index}`)
     }
 
-    const older = xs[index]
-    xs[index] = update(older)
-
-    return xs
+    return Arrays.updateAt(xs, index, update)
   }
 
   return useReducer(reduce, initial)
