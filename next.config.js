@@ -1,3 +1,6 @@
+/**
+ * Please see `script.build` of package.json.
+ */
 const urlPrefix = process.env.NODE_ENV === 'production' ? '/osatou-sugar-life-publisher' : ''
 
 /** @type {import('next').NextConfig} */

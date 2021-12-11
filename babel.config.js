@@ -1,5 +1,6 @@
 /**
  * For jest.
+ * Not for app.
  */
 module.exports = {
   presets: [
