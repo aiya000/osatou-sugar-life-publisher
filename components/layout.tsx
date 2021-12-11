@@ -1,12 +1,20 @@
 import Navbar from '@/components/Navbar'
-import React from 'react'
-import { FunctionComponent } from 'react'
+import React, { FC, useEffect } from 'react'
 
-const Layout: FunctionComponent = ({ children }) => (
-  <>
-    <Navbar />
-    <main>{children}</main>
-  </>
-)
+/**
+ * NOTE: This contains setting of body class names.
+ */
+const Layout: FC = ({ children }) => {
+  useEffect(() => {
+    document.querySelector('body')?.classList.add('overflow-x-hidden')
+  }, [])
+
+  return (
+    <>
+      <Navbar />
+      <main>{children}</main>
+    </>
+  )
+}
 
 export default Layout
