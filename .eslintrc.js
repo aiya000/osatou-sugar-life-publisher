@@ -78,14 +78,15 @@ module.exports = {
         hoist: 'all',
       },
     ],
+
+    '@typescript-eslint/no-empty-function': [
+      'error',
+      {
+        allow: ['arrowFunctions'],
+      },
+    ],
   },
 
-  '@typescript-eslint/no-empty-function': [
-    'error',
-    {
-      allow: ['arrowFunctions'],
-    },
-  ],
   settings: {
     jsdoc: {
       tagNamePreference: {
