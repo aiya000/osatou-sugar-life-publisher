@@ -119,6 +119,7 @@ const Input: NextPage = () => {
             </div>
           }
           components={withYouComponents}
+          className="mt-6"
         />
 
         <HopeToDo
@@ -128,6 +129,7 @@ const Input: NextPage = () => {
             </div>
           }
           components={toYouComponents}
+          className="mt-6"
         >
           <HopeToEcchi
             isVisible={toYouEcchiIsVisible}
@@ -143,6 +145,7 @@ const Input: NextPage = () => {
             </div>
           }
           components={fromYouComponents}
+          className="mt-6"
         >
           <HopeToEcchi
             isVisible={fromYouEcchiIsVisible}
