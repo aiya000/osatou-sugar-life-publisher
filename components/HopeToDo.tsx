@@ -19,7 +19,7 @@ export interface HopeToDoProps {
 }
 
 const HopeToDo: FC<HopeToDoProps> = ({ sectionName, components, children, className }) => (
-  <section className={classNames('rounded-box w-3/4v', className)}>
+  <section className={classNames('rounded-box', className)}>
     {sectionName && <div className="text-lg my-4 md:text-2xl">{sectionName}</div>}
 
     <div className="flex flex-row flex-wrap">

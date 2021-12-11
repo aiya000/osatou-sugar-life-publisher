@@ -119,7 +119,7 @@ const Input: NextPage = () => {
             </div>
           }
           components={withYouComponents}
-          className="mt-6"
+          className="mt-6 w-3/4v"
         />
 
         <HopeToDo
@@ -129,9 +129,10 @@ const Input: NextPage = () => {
             </div>
           }
           components={toYouComponents}
-          className="mt-6"
+          className="mt-6 w-3/4v"
         >
           <HopeToEcchi
+            checkboxId="hope-to-ecchi-checkbox-1"
             isVisible={toYouEcchiIsVisible}
             toggleIsVisible={toggleToYouEcchiIsVisible}
             components={toYouEcchiComponents}
@@ -145,9 +146,10 @@ const Input: NextPage = () => {
             </div>
           }
           components={fromYouComponents}
-          className="mt-6"
+          className="mt-6 w-3/4v"
         >
           <HopeToEcchi
+            checkboxId="hope-to-ecchi-checkbox-2"
             isVisible={fromYouEcchiIsVisible}
             toggleIsVisible={toggleFromYouEcchiIsVisible}
             components={fromYouEcchiComponents}
@@ -195,17 +197,20 @@ const ExapleButton: FC = () => {
 }
 
 type HopeToEcchiProps = HopeToDoProps & {
+  checkboxId: string
   isVisible: boolean
   toggleIsVisible: () => void
 }
 
-const HopeToEcchi: FC<HopeToEcchiProps> = ({ isVisible, toggleIsVisible, components }) => {
-  const checkboxId = 'hope-to-ecchi-checkbox' // NOTE: Why this can be used two or more times?
-  return (
-    <>
-      <input type="checkbox" checked={isVisible} onChange={toggleIsVisible} id={checkboxId} />
-      <label htmlFor={checkboxId}>えっちな項目を表示する</label>
-      {isVisible && <HopeToDo components={components} />}
-    </>
-  )
-}
+const HopeToEcchi: FC<HopeToEcchiProps> = ({
+  checkboxId,
+  isVisible,
+  toggleIsVisible,
+  components,
+}) => (
+  <>
+    <input type="checkbox" checked={isVisible} onChange={toggleIsVisible} id={checkboxId} />
+    <label htmlFor={checkboxId}>えっちな項目を表示する</label>
+    {isVisible && <HopeToDo components={components} className="w-full" />}
+  </>
+)
