@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import React from 'react'
 import { NextPage } from 'next'
 import { title } from '@/data/title'
 
