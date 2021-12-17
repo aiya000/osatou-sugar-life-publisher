@@ -25,7 +25,7 @@ const links: Array<FunctionComponent<Props>> = [
   ),
 
   ({ className, onClick }) => (
-    <Link href="/input" key="input">
+    <Link href="/loveletter" key="loveletter">
       <a className={classNames('btn', className)} onClick={orDoNothing(onClick)}>
         発行する
       </a>

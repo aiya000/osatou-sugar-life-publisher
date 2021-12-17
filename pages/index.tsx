@@ -105,7 +105,7 @@ const Home: NextPage = () => (
       </section>
 
       <section className="mt-12">
-        <Link href="/input">
+        <Link href="/loveletter">
           <a className="btn text-pink-500">発行する</a>
         </Link>
       </section>

@@ -49,7 +49,7 @@ const andYouEcchiUnref: Readonly<Array<HopeToDoItem>> = [
 /**
  * To make a request for [[Sheet]].
  */
-const Input: NextPage = () => {
+const LoveLetter: NextPage = () => {
   const [withYou, switchWithYouItem] = useIndexed(mutableArray(withYouUnref), ({ text, item }) => ({
     text,
     item: increment(item),
@@ -160,7 +160,7 @@ const Input: NextPage = () => {
   )
 }
 
-export default Input
+export default LoveLetter
 
 const ExapleButton: FC = () => {
   const { item, doSwitch } = useSwitch3(0)
