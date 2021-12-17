@@ -52,7 +52,7 @@ const Home: NextPage = () => (
       <p className="mt-6">TODO: ↓ちゃんと書く↓</p>
 
       {/* Introduction */}
-      <section className="rounded-box w-1/2 mt-4 flex flex-col items-center">
+      <section className="rounded-box w-3/4v mt-4 flex flex-col items-center">
         <SectionTitle>1. ラブレターを作る！</SectionTitle>
         <div className="mt-4 w-full">
           <p>
@@ -66,26 +66,28 @@ const Home: NextPage = () => (
           <p>保存しておきましょう！</p>
         </div>
       </section>
-      <section className="rounded-box w-1/2 mt-4 flex flex-col items-center">
+      <section className="rounded-box w-3/4v mt-4 flex flex-col items-center">
         <SectionTitle>2. ラブレターを送信して告白する！</SectionTitle>
         <div className="mt-4 w-full">
           <p>
             <span className="font-bold text-pink-400">
               <span className="font-bold text-pink-400">ラブレター</span>
             </span>
-            （↑で保存しておいたURL）を相手に送信して……告白をしましょう！
+            （↑で保存しておいたURL）を相手に送信して……
           </p>
-          <p>
-            先に告白してもおっけー！ おっけもらったら、
+          <p>告白をしましょう！</p>
+          <p>がんばって～！ ドキドキ――</p>
+
+          <p className="mt-4">
+            先に告白してもおっけー！ おっけーもらったら、
             <span className="font-bold text-pink-400">
               <span className="font-bold text-pink-400">ラブレター</span>
             </span>
             わたそ{' (,,>᎑<,,)'}
           </p>
-          <p>がんばって～！ ドキドキ――</p>
         </div>
       </section>
-      <section className="rounded-box w-1/2 mt-4 flex flex-col items-center">
+      <section className="rounded-box w-3/4v mt-4 flex flex-col items-center">
         <SectionTitle>3. おっけーもらったらおめでとー！！！！！</SectionTitle>
         <div className="mt-4 w-full">
           <p>
