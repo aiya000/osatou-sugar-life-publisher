@@ -8,7 +8,7 @@ import { Dispatch, useReducer } from 'react'
  */
 export function useIndexed<A>(
   initial: Array<A>,
-  update: (_: A) => A,
+  update: (x: A) => A,
 ): [Array<A>, Dispatch<number>] {
   function reduce(xs: Array<A>, index: number): Array<A> {
     if (index < 0) {

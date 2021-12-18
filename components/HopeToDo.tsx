@@ -1,5 +1,6 @@
 import IconButton from '@/components/IconButton'
 import React from 'react'
+import SectionTitle from '@/components/SectionTitle'
 import { FC, ReactElement } from 'react'
 import { Switch3Item } from '@/data/hooks/switch3'
 import { classNames } from '@/data/components'
@@ -9,22 +10,31 @@ import { classNames } from '@/data/components'
  */
 export interface HopeToDoItem {
   text: string
-  item: Switch3Item
+
+  /**
+   * A state of IconButton.
+   */
+  state: Switch3Item
 }
+
+/**
+ * All necessary items for [[HopeToDo]].
+ */
+export type HopeToDoComponent = HopeToDoItem & { doSwitch: () => void }
 
 export interface HopeToDoProps {
   sectionName?: ReactElement
-  components: Array<HopeToDoItem & { doSwitch: () => void }>
+  components: Array<HopeToDoComponent>
   className?: string
 }
 
 const HopeToDo: FC<HopeToDoProps> = ({ sectionName, components, children, className }) => (
   <section className={classNames('rounded-box', className)}>
-    {sectionName && <div className="text-lg my-4 md:text-2xl">{sectionName}</div>}
+    {sectionName && <SectionTitle>{sectionName}</SectionTitle>}
 
     <div className="flex flex-row flex-wrap">
-      {components.map(({ text, item, doSwitch }) => (
-        <IconButton text={text} current={item} onClick={doSwitch} key={text} className="m-2" />
+      {components.map(({ text, state, doSwitch }) => (
+        <IconButton text={text} current={state} onClick={doSwitch} key={text} className="m-2" />
       ))}
     </div>
 

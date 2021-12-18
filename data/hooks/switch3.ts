@@ -1,3 +1,9 @@
+/**
+ * General purpose [[Switch3Item]] and the hook.
+ *
+ * Which does loop with the 0~2 values.
+ */
+
 import { useReducer } from 'react'
 
 export type Switch3Item = 0 | 1 | 2

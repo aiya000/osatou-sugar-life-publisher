@@ -1,20 +1,20 @@
 import Head from 'next/head'
-import HopeToDo, { HopeToDoProps, HopeToDoItem } from '@/components/HopeToDo'
+import HopeToDo, { HopeToDoProps } from '@/components/HopeToDo'
 import IconButton from '@/components/IconButton'
-import React from 'react'
-import { FC } from 'react'
+import React, { FC } from 'react'
+import SectionTitle from '@/components/SectionTitle'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { NextPage } from 'next'
-import { cloneDeep } from 'lodash'
 import { faExclamation } from '@fortawesome/free-solid-svg-icons'
 import { faThumbsUp, faQuestionCircle, faTimesCircle } from '@fortawesome/free-regular-svg-icons'
 import { mutableArray } from '@/data/mutable'
 import { title } from '@/data/title'
 import { useBoolean } from 'react-hanger/array'
-import { useIndexed } from '@/data/hooks/useIndexed'
-import { useSwitch3, increment } from '@/data/hooks/switch3'
+import { useHopeToDoComponents } from '@/data/hooks/useHopeToDoComponents'
+import { useInput } from 'react-hanger'
+import { useSwitch3 } from '@/data/hooks/switch3'
 
-const withYouUnref: Readonly<Array<HopeToDoItem>> = [
+const withYouUnref = [
   'お話し',
   'デート',
   'ボイチャ',
@@ -24,72 +24,34 @@ const withYouUnref: Readonly<Array<HopeToDoItem>> = [
   'DM（Discordなど）',
   'リアルで会う',
   'ボイトレ',
-].map((text) => ({ text, item: 0 }))
+] as const
 
-/**
- * Items of 'to' you and 'from' you.
- */
-const andYouUnref: Readonly<Array<HopeToDoItem>> = ['なでなで', 'だきつき', 'キス'].map((text) => ({
-  text,
-  item: 0,
-}))
+const andYouUnref = ['なでなで', 'だきつき', 'キス'] as const
 
-/**
- * Ecchi items of 'to' you and 'from' you.
- */
-const andYouEcchiUnref: Readonly<Array<HopeToDoItem>> = [
+const andYouEcchiUnref = [
   'みみなめ',
   '服を脱ぐ',
   '服を脱がす',
   'あいぶ（上半身）',
   'あいぶ（下半身）',
   'ほんばん',
-].map((text) => ({ text, item: 0 }))
+] as const
 
 /**
  * To make a request for [[Sheet]].
  */
 const LoveLetter: NextPage = () => {
-  const [withYou, switchWithYouItem] = useIndexed(mutableArray(withYouUnref), ({ text, item }) => ({
-    text,
-    item: increment(item),
-  }))
-  const withYouComponents = withYou.map(({ text, item }, i) => ({
-    text,
-    item,
-    doSwitch: () => switchWithYouItem(i),
-  }))
+  const name = useInput('')
+  const gender = useInput('')
 
-  const [andYou, switchAndYouItem] = useIndexed(mutableArray(andYouUnref), ({ text, item }) => ({
-    text,
-    item: increment(item),
-  }))
-  const andYouComponents = andYou.map(({ text, item }, i) => ({
-    text,
-    item,
-    doSwitch: () => switchAndYouItem(i),
-  }))
+  const withYouComponents = useHopeToDoComponents(mutableArray(withYouUnref))
+  const toYouComponents = useHopeToDoComponents(mutableArray(andYouUnref))
+  const fromYouComponents = useHopeToDoComponents(mutableArray(andYouUnref))
 
-  const toYouComponents = cloneDeep(andYouComponents)
-  const fromYouComponents = cloneDeep(andYouComponents)
-
-  const [andYouEcchi, switchAndYouEcchiItem] = useIndexed(
-    mutableArray(andYouEcchiUnref),
-    ({ text, item }) => ({
-      text,
-      item: increment(item),
-    }),
-  )
-  const andYouEcchiComponents = andYouEcchi.map(({ text, item }, i) => ({
-    text,
-    item,
-    doSwitch: () => switchAndYouEcchiItem(i),
-  }))
-
+  const toYouEcchiComponents = useHopeToDoComponents(mutableArray(andYouEcchiUnref))
   const [toYouEcchiIsVisible, { toggle: toggleToYouEcchiIsVisible }] = useBoolean(false)
-  const toYouEcchiComponents = cloneDeep(andYouEcchiComponents)
+  const fromYouEcchiComponents = useHopeToDoComponents(mutableArray(andYouEcchiUnref))
   const [fromYouEcchiIsVisible, { toggle: toggleFromYouEcchiIsVisible }] = useBoolean(false)
-  const fromYouEcchiComponents = cloneDeep(andYouEcchiComponents)
 
   return (
     <div>
@@ -112,10 +74,33 @@ const LoveLetter: NextPage = () => {
           <ExapleButton />
         </section>
 
+        <section className="rounded-box mt-6 flex flex-col items-center">
+          <SectionTitle>あなたのきほん情報</SectionTitle>
+          <label>
+            名前
+            <input
+              type="text"
+              {...name.eventBind}
+              placeholder="なまえ"
+              className="ml-4 border-2 border-black"
+            />
+          </label>
+          <label className="mt-2">
+            性別
+            <input
+              type="text"
+              {...gender.eventBind}
+              placeholder="いぬ"
+              className="ml-4 border-2 border-black"
+            />
+          </label>
+          <label className="mt-2">インしやすい時間</label>
+        </section>
+
         <HopeToDo
           sectionName={
             <div>
-              あなたが相手<span className="font-bold">と</span>したいこと
+              あなたが相手<span className="text-yellow-400">と</span>したいこと
             </div>
           }
           components={withYouComponents}
@@ -125,7 +110,7 @@ const LoveLetter: NextPage = () => {
         <HopeToDo
           sectionName={
             <div>
-              あなたが相手<span className="font-bold">に</span>したいこと
+              あなたが相手<span className="text-yellow-400">に</span>したいこと
             </div>
           }
           components={toYouComponents}
@@ -142,7 +127,7 @@ const LoveLetter: NextPage = () => {
         <HopeToDo
           sectionName={
             <div>
-              あなたが相手<span className="font-bold">から</span>されたいこと
+              あなたが相手<span className="text-yellow-400">から</span>されたいこと
             </div>
           }
           components={fromYouComponents}
