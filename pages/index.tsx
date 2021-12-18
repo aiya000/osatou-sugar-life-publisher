@@ -59,11 +59,11 @@ const Home: NextPage = () => (
             記入がおわったら<span className="font-bold text-pink-400">ラブレター</span>
             が作成されます💕
           </p>
-          <p>
+          <p className="mt-4">
             その際に、ブラウザに発行されたURLが
-            <span className="font-bold text-pink-400">ラブレター</span>になります{' ><'}
+            <span className="font-bold text-pink-400">ラブレター</span>になります！
           </p>
-          <p>保存しておきましょう！</p>
+          <p>保存しておこう💓</p>
         </div>
       </section>
       <section className="rounded-box w-3/4v mt-4 flex flex-col items-center">
@@ -92,7 +92,7 @@ const Home: NextPage = () => (
         <div className="mt-4 w-full">
           <p>
             <span className="font-bold text-pink-400">ラブレター</span>
-            の下部に、相手用の記入場所へのリンクがあります
+            の下部に、相手用の記入場所へのリンクがあります✨
           </p>
           <p>
             それを記入してもらったら……とうとう
