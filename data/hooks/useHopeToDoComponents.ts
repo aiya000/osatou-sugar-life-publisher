@@ -1,5 +1,5 @@
 import { HopeToDoComponent, HopeToDoItem } from '@/components/HopeToDo'
-import { increment } from '@/data/hooks/switch3'
+import { increment } from '@/data/hooks/useSwitch3'
 import { useIndexed } from '@/data/hooks/useIndexed'
 
 export function useHopeToDoComponents(componentItemTexts: Array<string>): Array<HopeToDoComponent> {

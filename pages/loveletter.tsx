@@ -12,7 +12,7 @@ import { title } from '@/data/title'
 import { useBoolean } from 'react-hanger/array'
 import { useHopeToDoComponents } from '@/data/hooks/useHopeToDoComponents'
 import { useInput } from 'react-hanger'
-import { useSwitch3 } from '@/data/hooks/switch3'
+import { useSwitch3 } from '@/data/hooks/useSwitch3'
 
 const withYouUnref = [
   'お話し',
