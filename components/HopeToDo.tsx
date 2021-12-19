@@ -2,7 +2,7 @@ import IconButton from '@/components/IconButton'
 import React from 'react'
 import SectionTitle from '@/components/SectionTitle'
 import { FC, ReactElement } from 'react'
-import { Switch3Item } from '@/data/hooks/switch3'
+import { Switch3Item } from '@/data/hooks/useSwitch3'
 import { classNames } from '@/data/components'
 
 /**
