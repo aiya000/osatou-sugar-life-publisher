@@ -43,6 +43,8 @@ const andYouEcchiUnref = [
 const LoveLetter: NextPage = () => {
   const name = useInput('')
   const gender = useInput('')
+  const role = useInput('妻')
+  const anotherRole = useInput('')
   const startTimeToIn = useInput('21:00')
   const endTimeToIn = useInput('00:00')
   const [yourIconFilePath, setYourIconFilePath] = useState('')
@@ -56,6 +58,8 @@ const LoveLetter: NextPage = () => {
   const [toYouEcchiIsVisible, { toggle: toggleToYouEcchiIsVisible }] = useBoolean(false)
   const fromYouEcchiComponents = useHopeToDoComponents(mutableArray(andYouEcchiUnref))
   const [fromYouEcchiIsVisible, { toggle: toggleFromYouEcchiIsVisible }] = useBoolean(false)
+
+  const otherNotes = useInput('')
 
   return (
     <div>
@@ -78,7 +82,7 @@ const LoveLetter: NextPage = () => {
           <ExapleButton />
         </section>
 
-        <section className="rounded-box mt-6 flex flex-col items-center">
+        <section className="rounded-box mt-6 flex flex-col items-center w-3/4v">
           <SectionTitle>あなたのきほん情報</SectionTitle>
           <label>
             名前
@@ -90,10 +94,24 @@ const LoveLetter: NextPage = () => {
             <input
               type="text"
               {...gender.eventBind}
-              placeholder="女 | 男 | いぬ | ねこ"
+              placeholder="女 | 男 | いぬ | ねこ | （自由入力）"
               className="ml-4"
             />
           </label>
+
+          <div className="flex flex-row flex-wrap mt-2">
+            <div>あなたは</div>
+            <label className="ml-4">
+              <input type="radio" {...role.eventBind} checked />妻
+            </label>
+            <label className="ml-2">
+              <input type="radio" {...role.eventBind} />夫
+            </label>
+            <label className="ml-2">
+              <input type="radio" {...role.eventBind} />
+              <input type="text" {...anotherRole.eventBind} placeholder="その他（自由入力）" />
+            </label>
+          </div>
 
           <div className="flex flex-col my-4">
             <label>
@@ -165,6 +183,11 @@ const LoveLetter: NextPage = () => {
             components={fromYouEcchiComponents}
           />
         </HopeToDo>
+
+        <section className="rounded-box mt-6 flex flex-col items-center w-3/4v">
+          <SectionTitle>その他</SectionTitle>
+          <textarea {...otherNotes.eventBind} placeholder="相手に伝えたいことなど♡" />
+        </section>
       </main>
     </div>
   )
