@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import HopeToDo, { HopeToDoProps } from '@/components/HopeToDo'
 import IconButton from '@/components/IconButton'
-import React, { FC } from 'react'
+import React, { FC, useState, Dispatch, ChangeEvent } from 'react'
 import SectionTitle from '@/components/SectionTitle'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { NextPage } from 'next'
@@ -43,6 +43,10 @@ const andYouEcchiUnref = [
 const LoveLetter: NextPage = () => {
   const name = useInput('')
   const gender = useInput('')
+  const startTimeToIn = useInput('21:00')
+  const endTimeToIn = useInput('00:00')
+  const [yourIconFilePath, setYourIconFilePath] = useState('')
+  const setYourIconWithPreviewing = previewYourIconWith(setYourIconFilePath)
 
   const withYouComponents = useHopeToDoComponents(mutableArray(withYouUnref))
   const toYouComponents = useHopeToDoComponents(mutableArray(andYouUnref))
@@ -78,23 +82,46 @@ const LoveLetter: NextPage = () => {
           <SectionTitle>あなたのきほん情報</SectionTitle>
           <label>
             名前
-            <input
-              type="text"
-              {...name.eventBind}
-              placeholder="なまえ"
-              className="ml-4 border-2 border-black"
-            />
+            <input type="text" {...name.eventBind} placeholder="なまえ" className="ml-4" />
           </label>
+
           <label className="mt-2">
             性別
             <input
               type="text"
               {...gender.eventBind}
-              placeholder="いぬ"
-              className="ml-4 border-2 border-black"
+              placeholder="女 | 男 | いぬ | ねこ"
+              className="ml-4"
             />
           </label>
-          <label className="mt-2">インしやすい時間</label>
+
+          <div className="flex flex-col my-4">
+            <label>
+              あなたのアイコン
+              <input
+                type="file"
+                src={yourIconFilePath}
+                onChange={setYourIconWithPreviewing}
+                className="ml-4 p-2"
+              />
+            </label>
+            {yourIconFilePath && (
+              <div className="w-full flex flex-col items-center">
+                <img
+                  src={yourIconFilePath}
+                  alt="あなたのアイコン"
+                  className="w-32 h-auto mt-4 rounded-lg"
+                />
+              </div>
+            )}
+          </div>
+
+          <label className="mt-2">
+            インしやすい時間
+            <input type="time" {...startTimeToIn.eventBind} className="ml-4" />
+            {' 〜 '}
+            <input type="time" {...endTimeToIn.eventBind} />
+          </label>
         </section>
 
         <HopeToDo
@@ -141,6 +168,30 @@ const LoveLetter: NextPage = () => {
       </main>
     </div>
   )
+
+  function previewYourIconWith(
+    dispatch: Dispatch<string>,
+  ): (event: ChangeEvent<HTMLInputElement>) => void {
+    return () => {
+      const target = event?.target as { files?: Array<Blob> } | null
+      const uploaded = (target?.files ?? [])[0]
+      if (uploaded === undefined) {
+        // If no files selected.
+        return
+      }
+
+      const reader = new FileReader()
+      reader.onload = (e) => {
+        const file = e.target?.result
+        if (typeof file !== 'string') {
+          throw new Error(`Fatal error! unknown file type. file: ${file}`)
+        }
+        dispatch(file)
+      }
+
+      reader.readAsDataURL(uploaded)
+    }
+  }
 }
 
 export default LoveLetter

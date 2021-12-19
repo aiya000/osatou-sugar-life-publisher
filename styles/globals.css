@@ -8,12 +8,19 @@ html, body {
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
+* {
+  box-sizing: border-box;
+}
+
+/* ↓ Define reset styles ↓ */
+
 a {
   @apply text-blue-700 hover:text-blue-500
 }
 
-* {
-  box-sizing: border-box;
+input {
+  border: 1px solid silver;
+  @apply rounded pl-2;
 }
 
 /* ↓ Tailwind ↓ */
@@ -31,7 +38,7 @@ a {
 /* ↓ Components ↓ */
 
 .rounded-box {
-  @apply border-2 border-pink-400 rounded-lg bg-white p-4
+  @apply border-2 border-pink-400 rounded-lg bg-white p-4;
 }
 
 .btn {
