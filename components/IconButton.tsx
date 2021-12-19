@@ -5,7 +5,7 @@ import { Switch3Item, fold } from '@/data/hooks/switch3'
 import { classNames } from '@/data/components'
 import { faThumbsUp, faQuestionCircle, faTimesCircle } from '@fortawesome/free-regular-svg-icons'
 
-interface Props {
+interface IconButtonProps {
   text: string
 
   /**
@@ -19,12 +19,10 @@ interface Props {
   className?: string
 }
 
-// NOTE: Currently you can implement `current` over maximum of Switch3Item.
-
 /**
  * A fancy styled check box.
  */
-const IconButton: FunctionComponent<Props> = ({ current, text, onClick, className }) => (
+const IconButton: FunctionComponent<IconButtonProps> = ({ current, text, onClick, className }) => (
   <button
     onClick={onClick}
     className={classNames(
