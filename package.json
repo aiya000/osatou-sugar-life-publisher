@@ -4,6 +4,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "env NODE_ENV='production' next build && env NODE_ENV='production' next export",
+    "type-check": "next build",
+    "type-check:watch": "watchexec --exts tsx,ts --ignore '**/*.doctest.ts' --restart -- npm run type-check",
     "start": "next start",
     "lint": "next lint",
     "test": "jest",
