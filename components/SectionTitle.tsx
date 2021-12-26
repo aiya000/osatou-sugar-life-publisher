@@ -7,9 +7,9 @@ interface SectionTitleProps {
 
 const SectionTitle: FC<SectionTitleProps> = ({ children, className }) => (
   <div className="flex flex-row justify-center">
-    <p className={classNames('font-extrabold text-pink-400 text-lg md:text-2xl', className)}>
+    <div className={classNames('font-extrabold text-pink-400 text-lg md:text-2xl', className)}>
       {children}
-    </p>
+    </div>
   </div>
 )
 
