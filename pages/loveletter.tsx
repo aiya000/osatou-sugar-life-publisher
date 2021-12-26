@@ -9,7 +9,6 @@ import { NextPage } from 'next'
 import { faExclamation } from '@fortawesome/free-solid-svg-icons'
 import { faThumbsUp, faQuestionCircle, faTimesCircle } from '@fortawesome/free-regular-svg-icons'
 import { mutableArray } from '@/data/mutable'
-import { raise } from '@/data/Error'
 import { title } from '@/data/title'
 import { useBoolean } from 'react-hanger/array'
 import { useHopeToDoComponents } from '@/data/hooks/useHopeToDoComponents'
@@ -61,10 +60,15 @@ interface LoveLetterResult {
 const LoveLetter: NextPage = () => {
   const name = useInput('')
   const gender = useInput('')
-  const wifeRole = useInput(true)
-  const husbandRole = useInput(false)
-  const anotherRole = useInput(false) // This will be input by user if the user couldn't find their role in th selection
+
+  const [role, setRole] = useState('wife')
+  const setRoleByEvent = (e: ChangeEvent<HTMLInputElement>) => setRole(e.target.value)
+  const isRoleWife = () => role === 'wife'
+  const isRoleHusband = () => role === 'husband'
+  const isRoleAnother = () => !isRoleWife() && !isRoleHusband()
   const anotherRoleText = useInput('')
+  const setRoleToAnother = () => setRole(anotherRoleText.value)
+
   const startTimeToIn = useInput('21:00')
   const endTimeToIn = useInput('00:00')
   const [yourIconFilePath, setYourIconFilePath] = useState('')
@@ -81,24 +85,22 @@ const LoveLetter: NextPage = () => {
 
   const otherNotes = useInput('')
 
-  const getResult = () =>
-    normalizeState(
-      name.value,
-      gender.value,
-      wifeRole.value,
-      husbandRole.value,
-      anotherRole.value,
-      anotherRoleText.value,
-      startTimeToIn.value,
-      endTimeToIn.value,
-      yourIconFilePath,
-      withYouComponents,
-      toYouComponents,
-      fromYouComponents,
-      toYouEcchiComponents,
-      fromYouEcchiComponents,
-      otherNotes.value,
-    )
+  const getResult = () => ({
+    name: name.value,
+    gender: gender.value,
+    role: role,
+    startTimeToIn: startTimeToIn.value,
+    endTimeToIn: endTimeToIn.value,
+    yourIconFilePath: yourIconFilePath,
+    hopeToDoWithYou: withYouComponents,
+    hopeToDoToYou: toYouComponents,
+    hopeToDoFromYou: fromYouComponents,
+    hopeToEcchiToYou: toYouEcchiComponents,
+    hopeToEcchiFromYou: fromYouEcchiComponents,
+    otherNotes: otherNotes.value,
+  })
+
+  const getLinkToPreview = () => `/preview-loveletter?${makeResultToQuery(getResult())}`
 
   return (
     <div>
@@ -141,13 +143,24 @@ const LoveLetter: NextPage = () => {
           <div className="flex flex-row flex-wrap mt-2">
             <div>あなたは</div>
             <label className="ml-4">
-              <input type="radio" {...wifeRole.eventBind} />妻
+              <input type="radio" value="wife" onChange={setRoleByEvent} checked={isRoleWife()} />妻
             </label>
             <label className="ml-2">
-              <input type="radio" {...husbandRole.eventBind} />夫
+              <input
+                type="radio"
+                value="husband"
+                onChange={setRoleByEvent}
+                checked={isRoleHusband()}
+              />{' '}
+              夫
             </label>
             <label className="ml-2">
-              <input type="radio" {...anotherRole.eventBind} />
+              <input
+                type="radio"
+                value="another"
+                onChange={setRoleToAnother}
+                checked={isRoleAnother()}
+              />
               <input type="text" {...anotherRoleText.eventBind} placeholder="その他（自由入力）" />
             </label>
           </div>
@@ -232,7 +245,7 @@ const LoveLetter: NextPage = () => {
           />
         </section>
 
-        <Link href={`/preview-loveletter?${makeResultToQuery(getResult())}`}>
+        <Link href={getLinkToPreview()}>
           <a className="btn mt-6 shadow-lg">♡ラブレターの入力を完了する♡</a>
         </Link>
       </main>
@@ -314,46 +327,6 @@ const HopeToEcchi: FC<HopeToEcchiProps> = ({ isVisible, toggleIsVisible, compone
     {isVisible && <HopeToDo components={components} className="w-full" />}
   </>
 )
-
-function normalizeState(
-  name: string,
-  gender: string,
-  wifeRole: string,
-  husbandRole: string,
-  anotherRole: string,
-  anotherRoleText: string,
-  startTimeToIn: string,
-  endTimeToIn: string,
-  yourIconFilePath: string,
-  hopeToDoWithYou: Array<HopeToDoItem>,
-  hopeToDoToYou: Array<HopeToDoItem>,
-  hopeToDoFromYou: Array<HopeToDoItem>,
-  hopeToEcchiToYou: Array<HopeToDoItem>,
-  hopeToEcchiFromYou: Array<HopeToDoItem>,
-  otherNotes: string,
-): LoveLetterResult {
-  const role =
-    [
-      { checked: wifeRole, name: '妻' },
-      { checked: husbandRole, name: '夫' },
-      { checked: wifeRole, name: anotherRoleText },
-    ].find(({ checked }) => checked)?.name ?? raise('Fatal Error. No roles checked.')
-
-  return {
-    name,
-    gender,
-    role,
-    startTimeToIn,
-    endTimeToIn,
-    yourIconFilePath,
-    hopeToDoWithYou,
-    hopeToDoToYou,
-    hopeToDoFromYou,
-    hopeToEcchiToYou,
-    hopeToEcchiFromYou,
-    otherNotes,
-  }
-}
 
 function makeResultToQuery(result: LoveLetterResult): string {
   return encodeURI(`data=${JSON.stringify(result)}`)
