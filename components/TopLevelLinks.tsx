@@ -25,7 +25,7 @@ const TopLevelLinks: Array<FC<TopLevelLinksProps>> = [
   ),
 
   ({ className, onClick }) => (
-    <Link href="/loveletter" key="loveletter">
+    <Link href="/writing-loveletter" key="writing-loveletter">
       <a className={classNames('btn', className)} onClick={orDoNothing(onClick)}>
         発行する
       </a>

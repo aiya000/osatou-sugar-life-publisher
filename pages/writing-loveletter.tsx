@@ -39,7 +39,7 @@ const andYouEcchiUnref = [
   'ほんばん',
 ] as const
 
-interface LoveLetterResult {
+interface WritingLoveLetterResult {
   name: string
   gender: string
   role: string
@@ -57,7 +57,7 @@ interface LoveLetterResult {
 /**
  * To make a request for [[Sheet]].
  */
-const LoveLetter: NextPage = () => {
+const WritingLoveLetter: NextPage = () => {
   const name = useInput('')
   const gender = useInput('')
 
@@ -125,7 +125,7 @@ const LoveLetter: NextPage = () => {
 
         <section className="rounded-box mt-6 flex flex-col items-center w-3/4v">
           <SectionTitle>あなたのきほん情報</SectionTitle>
-          <label>
+          <label className="mt-4">
             名前
             <input type="text" {...name.eventBind} placeholder="なまえ" className="ml-4" />
           </label>
@@ -277,7 +277,7 @@ const LoveLetter: NextPage = () => {
   }
 }
 
-export default LoveLetter
+export default WritingLoveLetter
 
 const ExapleButton: FC = () => {
   const { item, doSwitch } = useSwitch3(0)
@@ -328,6 +328,6 @@ const HopeToEcchi: FC<HopeToEcchiProps> = ({ isVisible, toggleIsVisible, compone
   </>
 )
 
-function makeResultToQuery(result: LoveLetterResult): string {
+function makeResultToQuery(result: WritingLoveLetterResult): string {
   return encodeURI(`data=${JSON.stringify(result)}`)
 }
