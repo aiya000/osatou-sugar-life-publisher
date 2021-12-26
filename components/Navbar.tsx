@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import React from 'react'
+import TopLevelLinks from '@/components/TopLevelLinks'
 import brandIcon from '~/images/brand-icon.png'
-import links from '@/components/links'
 import { FC } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faTimesCircle } from '@fortawesome/free-solid-svg-icons'
@@ -28,7 +28,7 @@ const Navbar: FC = () => {
         </button>
 
         <div className="show-only-desktop flex flex-row absolute top-2 right-2">
-          {links.map((ALink, i) => (
+          {TopLevelLinks.map((ALink, i) => (
             <ALink className="ml-1 h-16" key={i} />
           ))}
         </div>
@@ -41,7 +41,7 @@ const Navbar: FC = () => {
             　
           </button>
           <div className="w-3/4v h-screen bg-pink-100 items-center flex flex-col border-2 border-pink-400 rounded-lg">
-            {links.map((ALink, i) => (
+            {TopLevelLinks.map((ALink, i) => (
               <ALink
                 className="w-3/4 mt-2 flex flex-col items-center"
                 onClick={toggleMenuIsOpening}

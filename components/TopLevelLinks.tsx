@@ -1,9 +1,9 @@
 import Link from 'next/link'
 import React from 'react'
-import { FunctionComponent } from 'react'
+import { FC } from 'react'
 import { classNames } from '@/data/components'
 
-interface Props {
+interface TopLevelLinksProps {
   className?: string
   onClick?: () => void
 }
@@ -15,7 +15,7 @@ function orDoNothing(f?: () => void): () => void {
 /**
  * For Navbar, or else.
  */
-const links: Array<FunctionComponent<Props>> = [
+const TopLevelLinks: Array<FC<TopLevelLinksProps>> = [
   ({ className, onClick }) => (
     <Link href="/about" key="about">
       <a className={classNames('btn', className)} onClick={orDoNothing(onClick)}>
@@ -33,4 +33,4 @@ const links: Array<FunctionComponent<Props>> = [
   ),
 ]
 
-export default links
+export default TopLevelLinks
