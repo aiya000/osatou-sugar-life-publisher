@@ -3,7 +3,7 @@ import React from 'react'
 import { NextPage } from 'next'
 import { title } from '@/data/title'
 
-const Sheet: NextPage = () => (
+const About: NextPage = () => (
   <div>
     <Head>
       <title>{title} - これなに？</title>
@@ -40,4 +40,4 @@ const Sheet: NextPage = () => (
   </div>
 )
 
-export default Sheet
+export default About
