@@ -6,14 +6,17 @@ import React, { FC, useEffect } from 'react'
  */
 const Layout: FC = ({ children }) => {
   useEffect(() => {
-    document.querySelector('body')?.classList.add('overflow-x-hidden')
+    // NOTE: Using #toplevel-container because mobile devices are needing this: https://yuntu-tek.com/overflow-x/
+    // Remove unintended overflowing margins.
+    document.querySelector('#toplevel-container')?.classList.add('overflow-x-hidden')
+    document.querySelector('#toplevel-container')?.classList.add('relative')
   }, [])
 
   return (
-    <>
+    <div id="toplevel-container">
       <Navbar />
       <main>{children}</main>
-    </>
+    </div>
   )
 }
 
