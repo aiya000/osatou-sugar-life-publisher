@@ -3,7 +3,7 @@ export default {
   testEnvironment: 'node',
   globalSetup: 'react-screenshot-test/global-setup',
   globalTeardown: 'react-screenshot-test/global-teardown',
-  testMatch: ['**/screenshots/**/*.jsx'],
+  testMatch: ['**/screenshots/**/*.tsx'],
   transform: {
     '^.+\\.[t|j]sx?$': ['babel-jest', { configFile: './babel.config.jest.js' }],
     '^.+\\.module\\.css$': 'react-screenshot-test/css-modules-transform',
