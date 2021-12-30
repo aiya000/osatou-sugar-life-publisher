@@ -1,7 +1,8 @@
 import Head from 'next/head'
-import HopeToDo, { HopeToDoProps, HopeToDoItem } from '@/components/HopeToDo'
+import HopeToDo, { HopeToDoProps } from '@/components/HopeToDo'
 import IconButton from '@/components/IconButton'
 import Link from 'next/link'
+import LoveLetter, { LoveLetterProps } from '@/components/LoveLetter'
 import React, { FC, useState, Dispatch, ChangeEvent } from 'react'
 import SectionTitle from '@/components/SectionTitle'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -39,20 +40,7 @@ const andYouEcchiUnref = [
   'ほんばん',
 ] as const
 
-interface WritingLoveLetterResult {
-  name: string
-  gender: string
-  role: string
-  startTimeToIn: string
-  endTimeToIn: string
-  yourIconFilePath: string
-  hopeToDoWithYou: Array<HopeToDoItem>
-  hopeToDoToYou: Array<HopeToDoItem>
-  hopeToDoFromYou: Array<HopeToDoItem>
-  hopeToEcchiToYou: Array<HopeToDoItem>
-  hopeToEcchiFromYou: Array<HopeToDoItem>
-  otherNotes: string
-}
+type WritingLoveLetterResult = LoveLetterProps
 
 /**
  * To make a request for [[Sheet]].
@@ -243,6 +231,12 @@ const WritingLoveLetter: NextPage = () => {
             placeholder="相手に伝えたいことなど♡"
             className="w-full mt-4"
           />
+        </section>
+
+        <section className="mt-6 flex flex-col items-center w-3/4v">
+          <SectionTitle>プレビュー</SectionTitle>
+
+          <LoveLetter {...getResult()} />
         </section>
 
         <Link href={getLinkToPreview()}>
