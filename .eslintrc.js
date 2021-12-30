@@ -9,6 +9,7 @@ module.exports = {
     'plugin:import/warnings',
     'plugin:import/typescript',
     'next/core-web-vitals',
+    'plugin:storybook/recommended',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -17,14 +18,26 @@ module.exports = {
   },
   plugins: ['@typescript-eslint', 'import'],
   rules: {
-    '@next/next/no-img-element': 'off', // Because next/image doesn't support SSG.
+    // Because next/image doesn't support SSG.
+    '@next/next/no-img-element': 'off',
+
     '@typescript-eslint/adjacent-overload-signatures': 'error',
-    '@typescript-eslint/array-type': ['error', { default: 'generic' }],
+    '@typescript-eslint/array-type': [
+      'error',
+      {
+        default: 'generic',
+      },
+    ],
     '@typescript-eslint/no-empty-interface': 'warn',
     '@typescript-eslint/no-floating-promises': 'error',
     '@typescript-eslint/no-namespace': 'error',
     '@typescript-eslint/no-unnecessary-type-assertion': 'error',
-    '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+    '@typescript-eslint/no-unused-vars': [
+      'error',
+      {
+        argsIgnorePattern: '^_',
+      },
+    ],
     '@typescript-eslint/prefer-for-of': 'warn',
     '@typescript-eslint/triple-slash-reference': 'error',
     '@typescript-eslint/unified-signatures': 'warn',
@@ -55,7 +68,6 @@ module.exports = {
     'no-void': 'error',
     'prefer-const': 'warn',
     eqeqeq: ['warn', 'always'],
-
     'space-before-function-paren': [
       'error',
       {
@@ -64,21 +76,18 @@ module.exports = {
         asyncArrow: 'always',
       },
     ],
-
     'no-empty': [
       'error',
       {
         allowEmptyCatch: true,
       },
     ],
-
     'no-shadow': [
       'error',
       {
         hoist: 'all',
       },
     ],
-
     '@typescript-eslint/no-empty-function': [
       'error',
       {
@@ -86,7 +95,6 @@ module.exports = {
       },
     ],
   },
-
   settings: {
     jsdoc: {
       tagNamePreference: {
