@@ -16,6 +16,19 @@ export interface LoveLetterProps {
   otherNotes: string
 }
 
-const LoveLetter: FC<LoveLetterProps> = (_) => <div>TODO</div>
+const LoveLetter: FC<LoveLetterProps> = ({
+  name,
+  gender,
+  role,
+  startTimeToIn,
+  endTimeToIn,
+  yourIconFilePath,
+  hopeToDoWithYou,
+  hopeToDoToYou,
+  hopeToDoFromYou,
+  hopeToEcchiToYou,
+  hopeToEcchiFromYou,
+  otherNotes,
+}) => <div>TODO</div>
 
 export default LoveLetter
