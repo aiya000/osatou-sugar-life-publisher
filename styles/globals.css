@@ -33,6 +33,14 @@ input, textarea {
   .w-3\/4v {
     width: 75vw;
   }
+
+  .max-inline-size-max {
+    max-inline-size: max-content;
+  }
+
+  .margin-inline-auto {
+    margin-inline: auto;
+  }
 }
 
 /* ↓ Components ↓ */

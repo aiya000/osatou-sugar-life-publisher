@@ -15,6 +15,9 @@ const Layout: FC = ({ children }) => {
   return (
     <div id="toplevel-container">
       <Navbar />
+      <div className="mt-4 max-inline-size-max margin-inline-auto text-xl font-bold">
+        ♡サイト開発中なう♡
+      </div>
       <main>{children}</main>
     </div>
   )
