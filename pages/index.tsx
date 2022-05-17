@@ -49,6 +49,12 @@ const Home: NextPage = () => (
         className="m-4 p-4 md:w-1/2"
       />
 
+      <section className="mt-6">
+        <Link href="/writing-loveletter">
+          <a className="btn text-pink-500">発行する</a>
+        </Link>
+      </section>
+
       <p className="mt-6">TODO: ↓ちゃんと書く↓</p>
 
       {/* Introduction */}
@@ -105,7 +111,7 @@ const Home: NextPage = () => (
       </section>
 
       <section className="mt-12">
-        <Link href="/loveletter">
+        <Link href="/writing-loveletter">
           <a className="btn text-pink-500">発行する</a>
         </Link>
       </section>
