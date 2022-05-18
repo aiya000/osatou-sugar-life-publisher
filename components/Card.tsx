@@ -1,5 +1,6 @@
 import React from 'react'
-import { FunctionComponent } from 'react'
+import { FC } from 'react'
+import { StaticImageData } from 'next/image'
 import { classNames } from '@/data/components'
 
 interface Props {
@@ -19,7 +20,7 @@ interface Props {
   className?: string
 }
 
-const Card: FunctionComponent<Props> = ({ image, title, text, hashTags, className }) => (
+const Card: FC<Props> = ({ image, title, text, hashTags, className }) => (
   <div className={classNames('rounded overflow-hidden shadow-lg', className)}>
     {image && <img src={image.src} alt="An example of a sugar" />}
 
