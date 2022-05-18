@@ -1,5 +1,6 @@
 import React from 'react'
 import { FunctionComponent } from 'react'
+import { StaticImageData } from 'next/image'
 import { classNames } from '@/data/components'
 
 interface Props {
