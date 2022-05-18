@@ -3,7 +3,7 @@ import HopeToDo, { HopeToDoProps } from '@/components/HopeToDo'
 import IconButton from '@/components/IconButton'
 import Link from 'next/link'
 import LoveLetter, { LoveLetterProps } from '@/components/LoveLetter'
-import React, { FC, useState, Dispatch, ChangeEvent } from 'react'
+import React, { FC, useState, useEffect, Dispatch, ChangeEvent } from 'react'
 import SectionTitle from '@/components/SectionTitle'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { NextPage } from 'next'
@@ -15,6 +15,8 @@ import { useBoolean } from 'react-hanger/array'
 import { useHopeToDoComponents } from '@/data/hooks/useHopeToDoComponents'
 import { useInput } from 'react-hanger'
 import { useSwitch3 } from '@/data/hooks/useSwitch3'
+import { raise } from '@/data/Error'
+import senkaAiIcon from '~/images/senka_ai.jpg'
 
 const withYouUnref = [
   'お話し',
@@ -72,6 +74,36 @@ const WritingLoveLetter: NextPage = () => {
   const [fromYouEcchiIsVisible, { toggle: toggleFromYouEcchiIsVisible }] = useBoolean(false)
 
   const otherNotes = useInput('')
+
+  /*
+   * TODO: Storyboardに移す
+   * デバッグ用
+   */
+  useEffect(() => {
+    name.setValue('千夏あい')
+    gender.setValue('ダックスフンド')
+    setYourIconFilePath(senkaAiIcon.src)
+
+    for (const i of [0, 1, 4, 5, 6, 8]) {
+      ;(withYouComponents[i]?.doSwitch ?? raise(`withYouComponents: ${i}`))()
+    }
+    ;(withYouComponents[7]?.doSwitch ?? raise(`withYouComponents: ${7}`))()
+    ;(withYouComponents[7]?.doSwitch ?? raise(`withYouComponents: ${7}`))()
+
+    for (const i of [0, 1, 2]) {
+      ;(toYouComponents[i]?.doSwitch ?? raise(`toYouComponents: ${i}`))()
+    }
+    toggleToYouEcchiIsVisible()
+    for (const i of [0]) {
+      ;(toYouEcchiComponents[i]?.doSwitch ?? raise(`toYouEcchiComponents: ${i}`))()
+    }
+
+    for (const i of [0, 1, 2]) {
+      ;(fromYouComponents[i]?.doSwitch ?? raise(`fromYouComponents: ${i}`))()
+    }
+
+    otherNotes.setValue('受け体質です //')
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   const getResult = () => ({
     name: name.value,
