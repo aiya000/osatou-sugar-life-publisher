@@ -13,7 +13,6 @@
     "doctest": "npm run testify && jest",
     "testify": "tsdoc-testify --fileMatch '(data|components|pages|styles|test)/**/*.tsx?'",
     "testify:clean": "rm **/*.doctest.ts",
-
     "": "// NODE_OPTIONS because https://stackoverflow.com/questions/69692842/error-message-error0308010cdigital-envelope-routinesunsupported",
     "storybook": "NODE_OPTIONS=--openssl-legacy-provider start-storybook -p 6006",
     "build-storybook": "build-storybook"
@@ -45,13 +44,13 @@
     "@types/node": "16.11.9",
     "@types/react": "17.0.35",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
+    "@typescript-eslint/parser": "^5.25.0",
     "autoprefixer": "^10.4.0",
     "babel-loader": "^8.2.3",
     "babel-plugin-module-resolver": "^4.1.0",
     "eslint": "7.32.0",
     "eslint-config-next": "12.0.4",
     "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-import": "^2.25.3",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-storybook": "^0.5.5",
     "jest": "^27.4.3",
