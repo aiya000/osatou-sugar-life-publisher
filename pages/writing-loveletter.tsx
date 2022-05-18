@@ -267,8 +267,7 @@ const WritingLoveLetter: NextPage = () => {
 
         <section className="mt-6 flex flex-col items-center w-3/4v">
           <SectionTitle>プレビュー</SectionTitle>
-
-          <LoveLetter {...getResult()} />
+          <LoveLetter className="w-full h-52" {...getResult()} />
         </section>
 
         <Link href={getLinkToPreview()}>
