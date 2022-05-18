@@ -1,6 +1,7 @@
 {
   "name": "osatou-sugar-life-publisher",
   "license": "MIT",
+  "main": "pages/index.tsx",
   "scripts": {
     "dev": "next dev",
     "build": "env NODE_ENV='production' next build && env NODE_ENV='production' next export",

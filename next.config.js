@@ -1,5 +1,5 @@
 /**
- * Please see `script.build` of package.json.
+ * Please see `script.build` of package.json and below modules.exports to resolve paths.
  */
 const urlPrefix = process.env.NODE_ENV === 'production' ? '/osatou-sugar-life-publisher' : ''
 
