@@ -13,7 +13,7 @@
     "doctest": "npm run testify && jest",
     "testify": "tsdoc-testify --fileMatch '(data|components|pages|styles|test)/**/*.tsx?'",
     "testify:clean": "rm **/*.doctest.ts",
-    "": "// NODE_OPTIONS because https://stackoverflow.com/questions/69692842/error-message-error0308010cdigital-envelope-routinesunsupported",
+    "// NODE_OPTIONS because https://stackoverflow.com/questions/69692842/error-message-error0308010cdigital-envelope-routinesunsupported": "",
     "storybook": "NODE_OPTIONS=--openssl-legacy-provider start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
@@ -61,6 +61,7 @@
     "react-test-renderer": "^17.0.2",
     "tailwindcss": "^2.2.19",
     "ts-jest": "^27.1.0",
+    "ts-node": "^10.9.1",
     "tsdoc-testify": "^0.0.3",
     "typescript": "4.4.4"
   }
