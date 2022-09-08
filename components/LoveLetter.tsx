@@ -1,24 +1,36 @@
 import React, { FC } from 'react'
-import { HopeToDoItem } from '@/components/HopeToDo'
-import { classNames } from '@/data/components'
 import background1 from '~/images/loveletter/background1.png'
+import { hopeToDoItem } from '@/components/HopeToDo'
+import { classNames } from '@/data/components'
+import { z } from 'zod'
 
-export interface LoveLetterProps {
-  name: string
-  gender: string
-  role: string
-  startTimeToIn: string
-  endTimeToIn: string
-  yourIconFilePath: string
-  hopeToDoWithYou: Array<HopeToDoItem>
-  hopeToDoToYou: Array<HopeToDoItem>
-  hopeToDoFromYou: Array<HopeToDoItem>
-  hopeToEcchiToYou: Array<HopeToDoItem>
-  hopeToEcchiFromYou: Array<HopeToDoItem>
-  otherNotes: string
+export const loveLetterProps = z.object({
+  name: z.string(),
+  gender: z.string(),
+  role: z.string(),
 
-  className?: string
-}
+  /**
+   * When they will login since.
+   */
+  startTimeToIn: z.string(),
+
+  /**
+   * When they will logout.
+   */
+  endTimeToIn: z.string(),
+
+  yourIconFilePath: z.string(),
+  hopeToDoWithYou: z.array(hopeToDoItem),
+  hopeToDoToYou: z.array(hopeToDoItem),
+  hopeToDoFromYou: z.array(hopeToDoItem),
+  hopeToEcchiToYou: z.array(hopeToDoItem),
+  hopeToEcchiFromYou: z.array(hopeToDoItem),
+  otherNotes: z.string(),
+
+  className: z.string().optional(),
+})
+
+export type LoveLetterProps = z.infer<typeof loveLetterProps>
 
 const LoveLetter: FC<LoveLetterProps> = ({
   name,

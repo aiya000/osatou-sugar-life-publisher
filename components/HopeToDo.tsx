@@ -2,25 +2,32 @@ import IconButton from '@/components/IconButton'
 import React from 'react'
 import SectionTitle from '@/components/SectionTitle'
 import { FC, ReactElement } from 'react'
-import { Switch3Item } from '@/data/hooks/useSwitch3'
+import { switch3Item } from '@/data/hooks/useSwitch3'
 import { classNames } from '@/data/components'
+import { z } from 'zod'
 
 /**
  * What you want to do.
  */
-export interface HopeToDoItem {
-  text: string
+export const hopeToDoItem = z.object({
+  text: z.string(),
 
   /**
    * A state of IconButton.
    */
-  state: Switch3Item
-}
+  state: switch3Item,
+})
+export type HopeToDoItem = z.infer<typeof hopeToDoItem>
 
 /**
  * All necessary items for [[HopeToDo]].
  */
-export type HopeToDoComponent = HopeToDoItem & { doSwitch: () => void }
+export const hopeToDoComponent = hopeToDoItem.and(
+  z.object({
+    doSwitch: z.function().returns(z.void()),
+  }),
+)
+export type HopeToDoComponent = z.infer<typeof hopeToDoComponent>
 
 export interface HopeToDoProps {
   sectionName?: ReactElement

@@ -5,8 +5,10 @@
  */
 
 import { useReducer } from 'react'
+import { z } from 'zod'
 
-export type Switch3Item = 0 | 1 | 2
+export const switch3Item = z.literal(0).or(z.literal(1).or(z.literal(2)))
+export type Switch3Item = z.infer<typeof switch3Item>
 
 function ensureItem(x: number): asserts x is Switch3Item {
   const allSwitchItems: Array<Switch3Item> = [0, 1, 2]

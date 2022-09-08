@@ -1,57 +1,199 @@
+import * as Arrays from '@/data/Array'
 import Head from 'next/head'
 import HopeToDo, { HopeToDoProps } from '@/components/HopeToDo'
 import IconButton from '@/components/IconButton'
 import Link from 'next/link'
-import LoveLetter, { LoveLetterProps } from '@/components/LoveLetter'
-import React, { FC, useState, useEffect, Dispatch, ChangeEvent } from 'react'
+import React, { FC, useState, Dispatch, ChangeEvent } from 'react'
 import SectionTitle from '@/components/SectionTitle'
+import senkaAiIcon from '~/images/senka_ai.jpg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { LoveLetterProps, loveLetterProps } from '@/components/LoveLetter'
 import { NextPage } from 'next'
+import { ToastContainer, toast } from 'react-toastify'
 import { faExclamation } from '@fortawesome/free-solid-svg-icons'
 import { faThumbsUp, faQuestionCircle, faTimesCircle } from '@fortawesome/free-regular-svg-icons'
-import { mutableArray } from '@/data/mutable'
+import { isEmpty, clone } from 'lodash'
 import { title } from '@/data/title'
 import { useBoolean } from 'react-hanger/array'
 import { useHopeToDoComponents } from '@/data/hooks/useHopeToDoComponents'
 import { useInput } from 'react-hanger'
+import { useRouter } from 'next/router'
 import { useSwitch3 } from '@/data/hooks/useSwitch3'
-import { raise } from '@/data/Error'
-import senkaAiIcon from '~/images/senka_ai.jpg'
-
-const withYouUnref = [
-  'お話し',
-  'デート',
-  'ボイチャ',
-  '作業通話',
-  'VR睡眠',
-  'VR感度開発',
-  'DM（Discordなど）',
-  'リアルで会う',
-  'ボイトレ',
-] as const
-
-const andYouUnref = ['なでなで', 'だきつき', 'キス'] as const
-
-const andYouEcchiUnref = [
-  'みみなめ',
-  'ディープキス',
-  '服を脱ぐ',
-  '服を脱がす',
-  'あいぶ（上半身）',
-  'あいぶ（下半身）',
-  'ほんばん',
-] as const
 
 type WritingLoveLetterResult = LoveLetterProps
+
+// TODO: HopeToDoItem.textって必要じゃなくない？
+const defaultWritingLoveLetterResult: WritingLoveLetterResult = {
+  name: '',
+  gender: '',
+  role: 'wife',
+  startTimeToIn: '21:00',
+  endTimeToIn: '00:00',
+  yourIconFilePath: '',
+  hopeToDoWithYou: [
+    { text: 'お話し', state: 0 },
+    { text: 'デート', state: 0 },
+    { text: 'ボイチャ', state: 0 },
+    { text: '作業通話', state: 0 },
+    { text: 'VR睡眠', state: 0 },
+    { text: 'VR感度開発', state: 0 },
+    { text: 'DM（Discordなど）', state: 0 },
+    { text: 'リアルで会う', state: 0 },
+    { text: 'ボイトレ', state: 0 },
+  ],
+  hopeToDoToYou: [
+    { text: 'なでなで', state: 0 },
+    { text: 'だきつき', state: 0 },
+    { text: 'キス', state: 0 },
+  ],
+  hopeToDoFromYou: [
+    { text: 'なでなで', state: 0 },
+    { text: 'だきつき', state: 0 },
+    { text: 'キス', state: 0 },
+  ],
+  hopeToEcchiToYou: [
+    { text: 'みみなめ', state: 0 },
+    { text: 'ディープキス', state: 0 },
+    { text: '服を脱ぐ', state: 0 },
+    { text: '服を脱がす', state: 0 },
+    { text: 'あいぶ（上半身）', state: 0 },
+    { text: 'あいぶ（下半身）', state: 0 },
+    { text: 'ほんばん', state: 0 },
+  ],
+  hopeToEcchiFromYou: [
+    { text: 'みみなめ', state: 0 },
+    { text: 'ディープキス', state: 0 },
+    { text: '服を脱ぐ', state: 0 },
+    { text: '服を脱がす', state: 0 },
+    { text: 'あいぶ（上半身）', state: 0 },
+    { text: 'あいぶ（下半身）', state: 0 },
+    { text: 'ほんばん', state: 0 },
+  ],
+  otherNotes: '',
+}
+
+const debugWritingLoveLetterResult: WritingLoveLetterResult = (() => {
+  const a = clone(defaultWritingLoveLetterResult)
+
+  a.name = '千夏あい'
+  a.gender = 'イヌ'
+  a.role = 'wife'
+  a.startTimeToIn = '21:00'
+  a.endTimeToIn = '23:00'
+  a.yourIconFilePath = senkaAiIcon.src
+  Arrays.updateAt_(a.hopeToDoWithYou, 0, (x) => ({
+    ...x,
+    state: 1 as const,
+  }))
+  Arrays.updateAt_(a.hopeToDoWithYou, 1, (x) => ({
+    ...x,
+    state: 1 as const,
+  }))
+  Arrays.updateAt_(a.hopeToDoWithYou, 3, (x) => ({
+    ...x,
+    state: 1 as const,
+  }))
+  Arrays.updateAt_(a.hopeToDoWithYou, 4, (x) => ({
+    ...x,
+    state: 1 as const,
+  }))
+  Arrays.updateAt_(a.hopeToDoWithYou, 5, (x) => ({
+    ...x,
+    state: 1 as const,
+  }))
+  Arrays.updateAt_(a.hopeToDoWithYou, 6, (x) => ({
+    ...x,
+    state: 2 as const,
+  }))
+  Arrays.updateAt_(a.hopeToDoWithYou, 7, (x) => ({
+    ...x,
+    state: 1 as const,
+  }))
+  Arrays.updateAt_(a.hopeToDoToYou, 0, (x) => ({
+    ...x,
+    state: 1 as const,
+  }))
+  Arrays.updateAt_(a.hopeToDoToYou, 1, (x) => ({
+    ...x,
+    state: 1 as const,
+  }))
+  Arrays.updateAt_(a.hopeToDoToYou, 2, (x) => ({
+    ...x,
+    state: 1 as const,
+  }))
+  Arrays.updateAt_(a.hopeToDoFromYou, 0, (x) => ({
+    ...x,
+    state: 1 as const,
+  }))
+  Arrays.updateAt_(a.hopeToDoFromYou, 1, (x) => ({
+    ...x,
+    state: 1 as const,
+  }))
+  Arrays.updateAt_(a.hopeToEcchiToYou, 0, (x) => ({
+    ...x,
+    state: 1 as const,
+  }))
+  Arrays.updateAt_(a.hopeToEcchiToYou, 1, (x) => ({
+    ...x,
+    state: 1 as const,
+  }))
+  Arrays.updateAt_(a.hopeToEcchiToYou, 2, (x) => ({
+    ...x,
+    state: 2 as const,
+  }))
+  Arrays.updateAt_(a.hopeToEcchiToYou, 4, (x) => ({
+    ...x,
+    state: 2 as const,
+  }))
+  Arrays.updateAt_(a.hopeToEcchiToYou, 5, (x) => ({
+    ...x,
+    state: 1 as const,
+  }))
+  Arrays.updateAt_(a.hopeToEcchiToYou, 6, (x) => ({
+    ...x,
+    state: 1 as const,
+  }))
+  Arrays.updateAt_(a.hopeToEcchiToYou, 0, (x) => ({
+    ...x,
+    state: 1 as const,
+  }))
+  Arrays.updateAt_(a.hopeToEcchiToYou, 1, (x) => ({
+    ...x,
+    state: 1 as const,
+  }))
+  Arrays.updateAt_(a.hopeToEcchiToYou, 2, (x) => ({
+    ...x,
+    state: 2 as const,
+  }))
+  Arrays.updateAt_(a.hopeToEcchiToYou, 4, (x) => ({
+    ...x,
+    state: 2 as const,
+  }))
+  Arrays.updateAt_(a.hopeToEcchiToYou, 5, (x) => ({
+    ...x,
+    state: 1 as const,
+  }))
+  Arrays.updateAt_(a.hopeToEcchiToYou, 6, (x) => ({
+    ...x,
+    state: 1 as const,
+  }))
+  a.otherNotes = '受け体質です //'
+
+  return a
+})()
 
 /**
  * To make a request for [[Sheet]].
  */
 const WritingLoveLetter: NextPage = () => {
-  const name = useInput('')
-  const gender = useInput('')
+  const router = useRouter()
 
-  const [role, setRole] = useState('wife')
+  const props = getPreviousPropsIfExists(router.query) // input
+
+  const name = useInput(props.name)
+  const gender = useInput(props.gender)
+
+  const [role, setRole] = useState(props.role)
   const setRoleByEvent = (e: ChangeEvent<HTMLInputElement>) => setRole(e.target.value)
   const isRoleWife = () => role === 'wife'
   const isRoleHusband = () => role === 'husband'
@@ -59,52 +201,23 @@ const WritingLoveLetter: NextPage = () => {
   const anotherRoleText = useInput('')
   const setRoleToAnother = () => setRole(anotherRoleText.value)
 
-  const startTimeToIn = useInput('21:00')
-  const endTimeToIn = useInput('00:00')
-  const [yourIconFilePath, setYourIconFilePath] = useState('')
+  const startTimeToIn = useInput(props.startTimeToIn)
+  const endTimeToIn = useInput(props.endTimeToIn)
+  const [yourIconFilePath, setYourIconFilePath] = useState(props.yourIconFilePath)
   const setYourIconWithPreviewing = previewYourIconWith(setYourIconFilePath)
 
-  const withYouComponents = useHopeToDoComponents(mutableArray(withYouUnref))
-  const toYouComponents = useHopeToDoComponents(mutableArray(andYouUnref))
-  const fromYouComponents = useHopeToDoComponents(mutableArray(andYouUnref))
+  const withYouComponents = useHopeToDoComponents(props.hopeToDoWithYou)
+  const toYouComponents = useHopeToDoComponents(props.hopeToDoToYou)
+  const fromYouComponents = useHopeToDoComponents(props.hopeToDoFromYou)
 
-  const toYouEcchiComponents = useHopeToDoComponents(mutableArray(andYouEcchiUnref))
+  const toYouEcchiComponents = useHopeToDoComponents(props.hopeToEcchiToYou)
   const [toYouEcchiIsVisible, { toggle: toggleToYouEcchiIsVisible }] = useBoolean(false)
-  const fromYouEcchiComponents = useHopeToDoComponents(mutableArray(andYouEcchiUnref))
+  const fromYouEcchiComponents = useHopeToDoComponents(props.hopeToEcchiFromYou)
   const [fromYouEcchiIsVisible, { toggle: toggleFromYouEcchiIsVisible }] = useBoolean(false)
 
-  const otherNotes = useInput('')
+  const otherNotes = useInput(props.otherNotes)
 
-  /*
-   * TODO: Storyboardに移す
-   * デバッグ用
-   */
-  useEffect(() => {
-    name.setValue('千夏あい')
-    gender.setValue('ダックスフンド')
-    setYourIconFilePath(senkaAiIcon.src)
-
-    for (const i of [0, 1, 4, 5, 6, 8]) {
-      ;(withYouComponents[i]?.doSwitch ?? raise(`withYouComponents: ${i}`))()
-    }
-    ;(withYouComponents[7]?.doSwitch ?? raise(`withYouComponents: ${7}`))()
-    ;(withYouComponents[7]?.doSwitch ?? raise(`withYouComponents: ${7}`))()
-
-    for (const i of [0, 1, 2]) {
-      ;(toYouComponents[i]?.doSwitch ?? raise(`toYouComponents: ${i}`))()
-    }
-    toggleToYouEcchiIsVisible()
-    for (const i of [0]) {
-      ;(toYouEcchiComponents[i]?.doSwitch ?? raise(`toYouEcchiComponents: ${i}`))()
-    }
-
-    for (const i of [0, 1, 2]) {
-      ;(fromYouComponents[i]?.doSwitch ?? raise(`fromYouComponents: ${i}`))()
-    }
-
-    otherNotes.setValue('受け体質です //')
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
-
+  // output
   const getResult = () => ({
     name: name.value,
     gender: gender.value,
@@ -120,8 +233,6 @@ const WritingLoveLetter: NextPage = () => {
     otherNotes: otherNotes.value,
   })
 
-  const getLinkToPreview = () => `/preview-loveletter?${makeResultToQuery(getResult())}`
-
   return (
     <div>
       <Head>
@@ -132,6 +243,8 @@ const WritingLoveLetter: NextPage = () => {
       </Head>
 
       <main className="flex flex-col items-center">
+        <ToastContainer />
+
         <p className="font-extrabold text-pink-400 text-lg mt-4 md:text-2xl">
           まずは相手に情報を入力してもらうために
         </p>
@@ -265,14 +378,11 @@ const WritingLoveLetter: NextPage = () => {
           />
         </section>
 
-        <section className="mt-6 flex flex-col items-center w-3/4v">
-          <SectionTitle>プレビュー</SectionTitle>
-          <LoveLetter className="w-full h-52" {...getResult()} />
-        </section>
-
-        <Link href={getLinkToPreview()}>
-          <a className="btn mt-6 shadow-lg">♡ラブレターの入力を完了する♡</a>
+        {/* 
+        <Link href={`confirm-loveletter?${makeResultToQuery(getResult())}`}>
+          <a className="btn mt-6 shadow-lg">♡できばえを確認♡</a>
         </Link>
+          */}
       </main>
     </div>
   )
@@ -299,6 +409,36 @@ const WritingLoveLetter: NextPage = () => {
 
       reader.readAsDataURL(uploaded)
     }
+  }
+
+  function makeResultToQuery(result: WritingLoveLetterResult): string {
+    return encodeURI(`data=${JSON.stringify(result)}`)
+  }
+
+  /**
+   * Apply a previous props if exists on URL query.
+   */
+  function getPreviousPropsIfExists(
+    query: Record<string, string | Array<string> | undefined>,
+  ): LoveLetterProps {
+    if (query.debug) {
+      return debugWritingLoveLetterResult
+    }
+
+    if (isEmpty(query)) {
+      return defaultWritingLoveLetterResult
+    }
+
+    // If valid parameters input.
+    const parsingPrevious = loveLetterProps.safeParse(query)
+    if (!parsingPrevious.success) {
+      toast.error('不明なURLクエリが指定されましたん ><', {
+        position: 'top-center',
+      })
+      return defaultWritingLoveLetterResult
+    }
+
+    return parsingPrevious.data
   }
 }
 
@@ -352,7 +492,3 @@ const HopeToEcchi: FC<HopeToEcchiProps> = ({ isVisible, toggleIsVisible, compone
     {isVisible && <HopeToDo components={components} className="w-full" />}
   </>
 )
-
-function makeResultToQuery(result: WritingLoveLetterResult): string {
-  return encodeURI(`data=${JSON.stringify(result)}`)
-}

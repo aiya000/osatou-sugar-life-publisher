@@ -23,6 +23,12 @@ input, textarea {
   @apply rounded pl-2;
 }
 
+/* ↓ react-toastify ↓ */
+/* https://fkhadra.github.io/react-toastify/how-to-style */
+
+:root {
+}
+
 /* ↓ Tailwind ↓ */
 
 @layer utilities {

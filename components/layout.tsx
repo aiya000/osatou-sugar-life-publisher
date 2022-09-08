@@ -1,6 +1,8 @@
 import Navbar from '@/components/Navbar'
 import React, { FC, useEffect } from 'react'
 
+import 'react-toastify/dist/ReactToastify.css' // eslint-disable-line import/no-unassigned-import
+
 /**
  * NOTE: This contains setting of body class names.
  */
