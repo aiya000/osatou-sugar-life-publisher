@@ -11,9 +11,13 @@ export function updateAt<A>(xs: Array<A>, i: number, update: (_: A) => A): Array
   return ys
 }
 
-/**
- * Simular to `updateAt`, but destructive.
- */
-export function updateAt_<A>(xs: Array<A>, i: number, update: (_: A) => A): void {
-  xs[i] = update(xs[i] ?? raise(`No such ${i}-th element of ${JSON.stringify(xs)}`))
+export function zipWith<A, B, C>(
+  xs: Readonly<Array<A>>,
+  ys: Readonly<Array<B>>,
+  f: (x: A, y: B) => C,
+): Array<C> {
+  return xs.map((x, i) => {
+    const y = ys[i] ?? raise(`Fatal error: zipWith ${i}`)
+    return f(x, y)
+  })
 }

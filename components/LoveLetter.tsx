@@ -1,7 +1,8 @@
 import React, { FC } from 'react'
 import background1 from '~/images/loveletter/background1.png'
-import { hopeToDoItem } from '@/components/HopeToDo'
 import { classNames } from '@/data/components'
+import { hopeToDoItem } from '@/components/HopeToDo'
+import { switch3Item } from '@/data/hooks/useSwitch3'
 import { z } from 'zod'
 
 export const loveLetterProps = z.object({
@@ -20,11 +21,13 @@ export const loveLetterProps = z.object({
   endTimeToIn: z.string(),
 
   yourIconFilePath: z.string(),
-  hopeToDoWithYou: z.array(hopeToDoItem),
-  hopeToDoToYou: z.array(hopeToDoItem),
-  hopeToDoFromYou: z.array(hopeToDoItem),
-  hopeToEcchiToYou: z.array(hopeToDoItem),
-  hopeToEcchiFromYou: z.array(hopeToDoItem),
+
+  hopeToDoWithYouStates: z.array(switch3Item),
+  hopeToDoToYouStates: z.array(switch3Item),
+  hopeToDoFromYouStates: z.array(switch3Item),
+  hopeToEcchiToYouStates: z.array(switch3Item),
+  hopeToEcchiFromYouStates: z.array(switch3Item),
+
   otherNotes: z.string(),
 
   className: z.string().optional(),
@@ -39,11 +42,11 @@ const LoveLetter: FC<LoveLetterProps> = ({
   startTimeToIn,
   endTimeToIn,
   yourIconFilePath,
-  hopeToDoWithYou,
-  hopeToDoToYou,
-  hopeToDoFromYou,
-  hopeToEcchiToYou,
-  hopeToEcchiFromYou,
+  hopeToDoWithYouStates,
+  hopeToDoToYouStates,
+  hopeToDoFromYouStates,
+  hopeToEcchiToYouStates,
+  hopeToEcchiFromYouStates,
   otherNotes,
   className,
 }) => (
